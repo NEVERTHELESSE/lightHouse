@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+.elegant {
+  font-family: "eufm10";
+}
+
+@theme {
+  --color-primary: dodgerblue;
+  --color-primary-300: #d2e6fd;
+  --color-bgColor: white;
+  --color-overlay: rgb(230, 230, 230);
+  --color-tertiary: purple;
+  --color-success: #05df72;
+  --color-secondary: blue;
+  --color-soft: #e5e7eb;
+}
+
+.cover {
+  background: rgba(49, 139, 230, 0.411);
+}
+
+body {
+  overflow-x: hidden;
+  font-weight: 400;
+  scroll-behavior: smooth;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+.box {
+  box-shadow:
+    2px -2px 1px rgba(85, 85, 85, 0.315),
+    -2px 2px rgba(85, 85, 85, 0.164);
+  /* 0 2px -2px rgba(85, 85, 85, 0.445); */
+}
+
+header {
+  background: rgba(16, 111, 189, 0.336);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.grad {
+  background: linear-gradient(transparent, white);
+  transform: rotate(45deg);
+}
+
+.perfect::-webkit-scrollbar {
+  height: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.one {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input::placeholder {
+  color: gray;
+}
