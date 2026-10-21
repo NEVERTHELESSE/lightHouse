@@ -22,18 +22,6 @@ export default function ProductInfo({
     number: "+2349051602536",
     address: "oloko,ibadan",
   };
-  const navigate = useNavigate();
-  async function placeOrder() {
-    await axios
-      .post(`${api}payment`, { id, title, price, src: src[0], userInfo })
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.success) {
-          const url = res.data.url;
-          window.location.href = url;
-        }
-      });
-  }
 
   return (
     <div className="f rounded-2xl  md:w-[40%] p-3 box">
@@ -79,19 +67,19 @@ export default function ProductInfo({
         </div>
       </div>
       <div className="md:flex  md:justify-around w-full">
-        <button
-          onClick={placeOrder}
+        <Link
+          to="/checkout"
           className="lg:px-6 text-white w-full sm:w-[50%]  font-bold my-4  py-3 bg-primary rounded-full flex items-center justify-center text-[15px]"
         >
           <FaShoppingCart />
-          <span className="mx-1 text-auto ">Order</span>
+          <span className="mx-1 text-auto ">Checkout</span>
           <FaArrowRight />
-        </button>
+        </Link>
         <Link
           target="_blank"
           to={`https://wa.me/2347065945301?text=Hello%20I%20want%20to%20make%20an%20inquir%20about%20${title}%20is%20it%20negotiable%20${src}`}
           rel="noopener noreferrer"
-          className="lg:px-6 w-full sm:w-[50%] text-white  font-bold my-4 py-3 bg-secondary rounded-full flex items-center md:w-full  justify-center text-[15px]"
+          className="lg:px-6 w-full sm:w-[50%] text-white  font-bold my-4 py-3 bg-secondary rounded-full flex items-center   justify-center text-[15px]"
         >
           <FaWhatsapp />
           <p className="mx-3 text-auto ">Negotiate Price</p>

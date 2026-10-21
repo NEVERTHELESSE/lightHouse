@@ -12,7 +12,6 @@ export default [
     route("/products", "routes/products/Products.tsx"),
     route("/checkout", "routes/checkout/CheckOut.tsx"),
     route("/api/payment", "api/payment.ts"),
-    route("/oauth/consent", "api/payment.ts"),
   ]),
   route("admin", "routes/admin/Admin.tsx"),
   route("login", "routes/login/Login.tsx"),

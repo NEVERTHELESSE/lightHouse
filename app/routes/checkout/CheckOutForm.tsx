@@ -28,31 +28,31 @@ export default function CheckOutForm() {
       toast("hello", { type: "error" });
       console.log(error);
     } else {
+      if (cartStore) {
+        const totalAmount = calculateTotal(products);
+        const { id, title, src } = cartStore;
+        await axios
+          .post(`${api}payment`, {
+            id,
+            title,
+            price: totalAmount,
+            src: src,
+            userInfo,
+          })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              const url = res.data.url;
+              window.location.href = url;
+            }
+          });
+      } else {
+        //toastify console.log('hello')
+      }
       toast("user added", { type: "success" });
       console.log(data);
     }
 
-    // if (cartStore) {
-    //   const totalAmount = calculateTotal(products);
-    //   const { id, title, src } = cartStore;
-    //   await axios
-    //     .post(`${api}payment`, {
-    //       id,
-    //       title,
-    //       price: totalAmount,
-    //       src: src,
-    //       userInfo,
-    //     })
-    //     .then((res) => {
-    //       console.log(res.data);
-    //       if (res.data.success) {
-    //         const url = res.data.url;
-    //         window.location.href = url;
-    //       }
-    //     });
-    // } else {
-    //   //toastify console.log('hello')
-    // }
     setIsLoading(false);
   }
   async function createAccount(e: FormEvent<HTMLFormElement>) {

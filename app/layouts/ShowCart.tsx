@@ -15,10 +15,10 @@ export default function ShowCart() {
   return (
     <>
       <section
-        className="fixed flex items-end justify-end  w-screen duration-1000  h-screen z-100 "
+        className="fixed flex items-end justify-end  w-screen duration-200 ease-in  h-screen z-100 "
         style={{
-          display: active ? "flex" : "none",
-          // left: active ? 100 : 20,
+          // display: active ? "flex" : "none",
+          left: active ? "0" : "100%",
         }}
       >
         <div className="h-full w-[70%] bg-[#38383888]" onClick={hideCart}></div>

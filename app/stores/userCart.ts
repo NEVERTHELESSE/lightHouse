@@ -3,6 +3,9 @@ import type { showCartT } from "~/types/productType";
 
 const userCounterStore = create((set) => ({
   products: [],
+  // count: localStorage.getItem("carts")
+  //   ? localStorage.getItem("carts")?.length
+  //   : 0,
   count: 0,
   cart: false,
 

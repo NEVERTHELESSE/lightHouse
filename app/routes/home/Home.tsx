@@ -3,6 +3,7 @@ import Brand from "./Brand";
 import Hero from "./Hero";
 import Perfect from "./Perfect";
 import Testimony from "./Testimony";
+import ProductLoading from "~/loading/ProductLoading";
 
 const TopPick = lazy(() => import("./TopPick"));
 const Explore = lazy(() => import("./Explore"));
@@ -29,10 +30,10 @@ export default function Home() {
       <Hero />
       <Brand />
       <Perfect />
-      <Suspense fallback="loading">
+      <Suspense fallback={<ProductLoading />}>
         <TopPick />
       </Suspense>
-      <Suspense fallback="loading">
+      <Suspense fallback={<ProductLoading />}>
         <NewProduct />
       </Suspense>
       <Suspense fallback="loading">

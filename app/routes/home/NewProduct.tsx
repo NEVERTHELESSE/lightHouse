@@ -20,11 +20,11 @@ export default function NewProduct() {
   }
   const products = shuffleArray(topPicks);
   return (
-    <div className="my-2 p-2 md:my-10 md::p-10">
+    <div className="my-2 p-2 md:my-10 md:6 md:p-12">
       <div className="flex justify-between  items-center">
         <div>
           <h4 className="text-secondary text-[15px] font-bold">
-            If you cound'nt find the type of gadget you are looking for, kind
+            If you cound'nt find the type of gadget you are looking for, kindly
             make an request for it.
           </h4>
           <span className="md:text-5xl my-15 font-bold ">NEW GADGET</span>

@@ -8,3 +8,33 @@
 @theme {
   --color-primary: dodgerblue;
 }
+
+.moveLeft {
+  animation: move 60s 2s infinite;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  padding: 20px;
+}
+
+@keyframes move {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+.moveRight {
+  animation: moveR 60s 2s infinite;
+}
+
+@keyframes moveR {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}

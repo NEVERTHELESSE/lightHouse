@@ -26,7 +26,7 @@ export default function HeaderUser() {
         <FiUser className=" text-2xl" />
         <p className="ml-2 font-bold hidden md:flex">Account</p>
       </button>
-      <button className="flex mx-4 items-center">
+      <button className="flex mx-6 items-center">
         <FiHeart className="text-2xl  " />
         <p className="ml-2 font-bold hidden md:flex">Wishlit</p>
       </button>
@@ -34,11 +34,13 @@ export default function HeaderUser() {
         onClick={showCart}
         className="flex relative justify-center items-center"
       >
-        <FiShoppingCart className="text-2xl" />
-        <div className="absolute -top-5  size-5 flex items-center justify-center rounded-full p-1 bg-green-400">
-          {count}
-        </div>
-        <p className="ml-5 hidden md:flex font-bold">Carts</p>
+        <FiShoppingCart className="text-2xl ml-2" />
+        {count !== 0 && (
+          <div className="absolute -top-4 right-0 size-5 flex items-center justify-center rounded-full p-1 bg-green-400">
+            {count}
+          </div>
+        )}
+        <p className="hidden md:flex font-bold">Carts</p>
       </button>
     </div>
   );

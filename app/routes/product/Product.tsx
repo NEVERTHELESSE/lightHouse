@@ -10,10 +10,7 @@ import ProductInfo from "./ProductInfo";
 export default function Product() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(true);
-  // function pickImage(data:any) {
-  //   const info = topPicks.filter((pick) => pick.id == data);
-  //   return info;
-  // }
+
   const [imageUrl, setImageUrl] = useState("/img/laptop1.png");
   const [item, setItem] = useState<productType>({});
 
@@ -45,7 +42,7 @@ export default function Product() {
             <img
               src={imageUrl}
               alt=""
-              className="w-[80%] h-[50vh] md:h-[60vh] border object-contain sm:object-cover"
+              className="w-[80%] h-[50vh] md:h-[60vh] border object-contain sm:object-contain"
             />
             <div className="flex ml-4 flex-col justify-between">
               {item.src.map((list) => (
