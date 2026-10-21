@@ -20,38 +20,39 @@ export default function CheckOutForm() {
   async function placeOrder(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
-    const { data, error } = await supabase
-      .from("users")
-      .insert(userInfo)
-      .select("*");
-    if (error) {
-      toast("hello", { type: "error" });
-      console.log(error);
+    if (cartStore) {
+      const totalAmount = calculateTotal(products);
+      const { id, title, src } = cartStore;
+      await axios
+        .post(`${api}payment`, {
+          id,
+          title,
+          price: totalAmount,
+          src: src,
+          userInfo,
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.success) {
+            const url = res.data.url;
+            window.location.href = url;
+          }
+        });
     } else {
-      if (cartStore) {
-        const totalAmount = calculateTotal(products);
-        const { id, title, src } = cartStore;
-        await axios
-          .post(`${api}payment`, {
-            id,
-            title,
-            price: totalAmount,
-            src: src,
-            userInfo,
-          })
-          .then((res) => {
-            console.log(res.data);
-            if (res.data.success) {
-              const url = res.data.url;
-              window.location.href = url;
-            }
-          });
-      } else {
-        //toastify console.log('hello')
-      }
-      toast("user added", { type: "success" });
-      console.log(data);
+      toast("no cart store");
     }
+    // const { data, error } = await supabase
+    //   .from("users")
+    //   .insert(userInfo)
+    //   .select("*");
+    // if (error) {
+    //   toast("hello", { type: "error" });
+    //   console.log(error);
+    // } else {
+
+    //   toast("user added", { type: "success" });
+    //   console.log(data);
+    // }
 
     setIsLoading(false);
   }
@@ -65,7 +66,7 @@ export default function CheckOutForm() {
   return (
     <div className="rounded-2xl border w-125 h-155 text-center border-gray-200 shadow p-6">
       <h3 className="text-2xl font-bold ">
-        Quickly create an account to track
+        Fill the field to continue with your checkout
       </h3>
       <p className="text-gray-500">It takes less than 2 Minutes</p>
       <form
