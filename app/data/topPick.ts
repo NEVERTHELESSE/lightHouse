@@ -23,6 +23,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "laptop",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "2",
@@ -48,6 +55,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "laptop",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "3",
@@ -73,6 +87,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "laptop",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "4",
@@ -98,6 +119,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "laptop",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "5",
@@ -123,6 +151,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "laptop",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "6",
@@ -148,6 +183,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "laptop",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "7",
@@ -173,6 +215,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "laptop",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "8",
@@ -198,6 +247,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "laptop",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "9",
@@ -223,6 +279,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "phone",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "10",
@@ -248,6 +311,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "phone",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "11",
@@ -273,6 +343,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "phone",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "12",
@@ -298,6 +375,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "phone",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "13",
@@ -323,6 +407,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "phone",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "14",
@@ -348,6 +439,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "phone",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "15",
@@ -373,6 +471,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "phone",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "16",
@@ -398,6 +503,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "phone",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "17",
@@ -423,6 +535,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "mouse",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
 
   {
@@ -449,6 +568,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "mouse",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "19",
@@ -474,6 +600,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "mouse",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "20",
@@ -499,6 +632,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "mouse",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "21",
@@ -524,6 +664,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "mouse",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "22",
@@ -549,6 +696,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "mouse",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "23",
@@ -574,6 +728,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "mouse",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "24",
@@ -599,6 +760,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "keyboard",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "25",
@@ -624,6 +792,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "keyboard",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "26",
@@ -649,6 +824,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "keyboard",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "27",
@@ -674,6 +856,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "keyboard",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "28",
@@ -699,6 +888,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "keyboard",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "29",
@@ -724,6 +920,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "keyboard",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "30",
@@ -749,6 +952,13 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "keyboard",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
   {
     id: "31",
@@ -774,5 +984,12 @@ export const topPicks = [
     waranty: "2Years",
     rate: 5,
     category: "keyboard",
+    color: "black",
+    uploader: {
+      id: "1",
+      username: "neverthelesse",
+      email: "neverthelesse21@gmail.com",
+      profilePics: "/admin/user1.jpg",
+    },
   },
 ];

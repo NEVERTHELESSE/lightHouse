@@ -39,24 +39,26 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <div className="w-[20%] flex flex-col justify-around">
-          <h4 className="font-bold">Quick Links</h4>
-          <Link to="/">Home </Link>
-          <Link to="/">Laptops </Link>
-          <Link to="/">Phones</Link>
-          <Link to="/">Support</Link>
-          <Link to="/">About</Link>
-          <Link to="/">Contact</Link>
+        <div className="sm:flex my-2 ">
+          <div className="sm:w-[20%] flex flex-col justify-around">
+            <h4 className="font-bold">Quick Links</h4>
+            <Link to="/">Home </Link>
+            <Link to="/">Laptops </Link>
+            <Link to="/">Phones</Link>
+            <Link to="/">Support</Link>
+            <Link to="/">About</Link>
+            <Link to="/">Contact</Link>
+          </div>
+          <div className="sm:w-[20%] ml-4 justify-around flex flex-col">
+            <h4 className="font-bold">Popular Categories</h4>
+            <Link to="/">Business Laptop </Link>
+            <Link to="/">Gaming Laptops </Link>
+            <Link to="/">Student Laptop</Link>
+            <Link to="/">Creator Laptop</Link>
+            <Link to="/">Budget Laptop</Link>
+          </div>
         </div>
-        <div className="w-[20%] justify-around flex flex-col">
-          <h4 className="font-bold">Popular Categories</h4>
-          <Link to="/">Business Laptop </Link>
-          <Link to="/">Gaming Laptops </Link>
-          <Link to="/">Student Laptop</Link>
-          <Link to="/">Creator Laptop</Link>
-          <Link to="/">Budget Laptop</Link>
-        </div>
-        <div className="w-[20%]  ">
+        <div className="sm:w-[20%]  ">
           <h4 className="font-bold">Contact Us</h4>
           <div className="flex">
             <div className="h-50 flex flex-col justify-around">
@@ -78,8 +80,8 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div>
-          <h3 className="text-2xl rotate-45">
+        <div className="hidden sm:flex">
+          <h3 className="text-2xl  rotate-45">
             Good <br />
             Laptops <br /> Brighter <br />
             Futures

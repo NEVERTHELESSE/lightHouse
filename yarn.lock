@@ -342,6 +342,31 @@
     morgan "^1.10.1"
     source-map-support "^0.5.21"
 
+"@redis/bloom@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.npmjs.org/@redis/bloom/-/bloom-6.3.0.tgz"
+  integrity sha512-NQ5poYpZr0jv6zazN1cy6JY5kIipKFZ3R9GTL4kOUTX3a9YAfY29U8bsE4lWhVQEM+G4V0BXVC57mubIdDijeA==
+
+"@redis/client@^6.3.0", "@redis/client@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.npmjs.org/@redis/client/-/client-6.3.0.tgz"
+  integrity sha512-fHrjwGCBvAANGi+TuRuwKi83sIOzgHr8eh+Uf48w3fSX7Hhrz174NrWqfJhAC2vnN0d/tfaZpdr6+o6JC3QHwg==
+
+"@redis/json@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.npmjs.org/@redis/json/-/json-6.3.0.tgz"
+  integrity sha512-yt6vRfPBXtW/3qm53cF81TSQpLMjWdW4/2E9WQ2GgbvsKkuCKCFQIcMiKlil1ZMnezK+IQuS795xKU5psbaegw==
+
+"@redis/search@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.npmjs.org/@redis/search/-/search-6.3.0.tgz"
+  integrity sha512-RPXAZmKjZZG7Tm7m1w9keFdXzbL91PiSHQBfQRe9xwW40jNsTRbG0FwhIz4QlHPU4gKDAsCy8IQHj4yZl4H9rw==
+
+"@redis/time-series@6.3.0":
+  version "6.3.0"
+  resolved "https://registry.npmjs.org/@redis/time-series/-/time-series-6.3.0.tgz"
+  integrity sha512-+fJOB8mN1z5WRakCJNh5lVdz1KqvHGSOistsKeitD24QsCtPwyRQXWC0iq6T/i/ubLE/YcguZqPm8F598MKk4A==
+
 "@remix-run/node-fetch-server@^0.13.3":
   version "0.13.3"
   resolved "https://registry.npmjs.org/@remix-run/node-fetch-server/-/node-fetch-server-0.13.3.tgz"
@@ -455,6 +480,18 @@
     "@tailwindcss/oxide" "4.3.3"
     tailwindcss "4.3.3"
 
+"@tanstack/query-core@5.104.5":
+  version "5.104.5"
+  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.104.5.tgz"
+  integrity sha512-Q94gI8Opd+CbdVNOdj8ZCyV8WqLYitrDq1t96Xc8WZT6lY0r5iRnJLXYDxMex7EEf2v+mXvn4FcjaBKSxXZQ9A==
+
+"@tanstack/react-query@^5.104.5":
+  version "5.104.5"
+  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.104.5.tgz"
+  integrity sha512-RORgFe052U+93weaNuqg7qHq7vNVNzXN/VrXqD4bbAuQCWUqOl2lV5Ui9flWk5CVvMyL/Bh27QWhzwH0aaOx9g==
+  dependencies:
+    "@tanstack/query-core" "5.104.5"
+
 "@types/node@^20.19.0 || >=22.12.0", "@types/node@^22":
   version "22.20.1"
   resolved "https://registry.npmjs.org/@types/node/-/node-22.20.1.tgz"
@@ -467,7 +504,7 @@
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-19.2.3.tgz"
   integrity sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==
 
-"@types/react@^19.2.0", "@types/react@^19.2.14", "@types/react@>=18.0.0":
+"@types/react@^18 || ^19", "@types/react@^19.2.0", "@types/react@^19.2.14", "@types/react@>=18.0.0":
   version "19.2.17"
   resolved "https://registry.npmjs.org/@types/react/-/react-19.2.17.tgz"
   integrity sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==
@@ -1333,6 +1370,17 @@ readdirp@^5.0.0:
   version "5.0.0"
   resolved "https://registry.npmjs.org/readdirp/-/readdirp-5.0.0.tgz"
   integrity sha512-9u/XQ1pvrQtYyMpZe7DXKv2p5CNvyVwzUB6uhLAnQwHMSgKMBR62lc7AHljaeteeHXn11XTAaLLUVZYVZyuRBQ==
+
+redis@^6.3.0:
+  version "6.3.0"
+  resolved "https://registry.npmjs.org/redis/-/redis-6.3.0.tgz"
+  integrity sha512-XFQbPie1lGpKeUZ8ySYY43yLnQy/iIQtHNvIr/1XdaABpb96rUSdm3Mfl+98FEVbv9ZJIzINMno5s0Nh8E5LEw==
+  dependencies:
+    "@redis/bloom" "6.3.0"
+    "@redis/client" "6.3.0"
+    "@redis/json" "6.3.0"
+    "@redis/search" "6.3.0"
+    "@redis/time-series" "6.3.0"
 
 rolldown@~1.1.5:
   version "1.1.5"

@@ -3,12 +3,34 @@ import Selection from "~/components/Selection";
 import { productD } from "~/data/brand";
 import Items from "../home/Items";
 import { topPicks } from "~/data/topPick";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { api } from "~/api/api";
+import type { productType } from "~/types/productType";
+import ProductLoading from "~/loading/ProductLoading";
 
 export default function Products() {
   const [active, setActive] = useState("laptop");
-  const renderProduct = topPicks.filter(
-    (product) => product.category == active
-  );
+
+  const [page, setPage] = useState(1);
+  const [isError, setIsError] = useState(false);
+
+  const { data, isPending } = useQuery({
+    queryKey: [active, 1],
+    queryFn: async () => {
+      const res = await api.get(
+        `gadgets?page=${page}&&category=${active}&&size=20`
+      );
+      if (
+        res.data.message == "There was an error while processing data" ||
+        res.data.message === "no data found"
+      ) {
+        setIsError(true);
+      }
+      return res.data.message;
+    },
+    placeholderData: keepPreviousData,
+  });
+  console.log(data);
   const [select, setSelect] = useState("dell");
   return (
     <div className="py-30 px-10">
@@ -26,11 +48,25 @@ export default function Products() {
         </div>
         <div className="w-full">
           <Selection active={active} setActive={setActive} />
-          <div className="flex flex-wrap my-4 mx-2 justify-between">
-            {renderProduct.map((render) => (
-              <Items {...render} />
-            ))}
-          </div>
+          {isError ? (
+            <>
+              'There was an error whilte getting the data, kindly check your
+              internet connection and refresh the page'
+              <ProductLoading />
+            </>
+          ) : (
+            <>
+              {isPending ? (
+                <ProductLoading />
+              ) : (
+                <div className="flex flex-wrap justify-between w-full">
+                  {data.map((product: productType) => (
+                    <Items {...product} key={product.id} />
+                  ))}
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>

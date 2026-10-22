@@ -15,14 +15,17 @@ export default function ShowCart() {
   return (
     <>
       <section
-        className="fixed flex items-end justify-end  w-screen duration-200 ease-in  h-screen z-100 "
+        className="fixed flex items-end justify-end sm:p-0  w-screen duration-200 ease-in  h-screen z-100 "
         style={{
           // display: active ? "flex" : "none",
           left: active ? "0" : "100%",
         }}
       >
-        <div className="h-full w-[70%] bg-[#38383888]" onClick={hideCart}></div>
-        <div className="h-full bg-white duration-1000 flex flex-col justify-between  w-[30%]">
+        <div
+          className="h-full hidden sm:flex w-[70%] bg-[#38383888]"
+          onClick={hideCart}
+        ></div>
+        <div className="h-full bg-white duration-1000 flex flex-col justify-between  w-full sm:w-[30%]">
           <div>
             <div className="flex items-center p-6 justify-between shadow">
               <div>
@@ -100,7 +103,7 @@ export default function ShowCart() {
               </div>
               <Link
                 to="/checkout"
-                className="w-full text-center font-bold text-white  py-3 rounded-lg bg-primary"
+                className="w-full text-center font-bold text-white mb-4 py-3 rounded-lg bg-primary"
                 onClick={hideCart}
               >
                 Checkout Now

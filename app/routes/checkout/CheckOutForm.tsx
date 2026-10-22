@@ -36,10 +36,14 @@ export default function CheckOutForm() {
           if (res.data.success) {
             const url = res.data.url;
             window.location.href = url;
+          } else {
+            setIsLoading(false);
+            toast("There was an error while processing payment");
           }
         });
     } else {
       toast("no cart store");
+      setIsLoading(false);
     }
     // const { data, error } = await supabase
     //   .from("users")
@@ -53,8 +57,6 @@ export default function CheckOutForm() {
     //   toast("user added", { type: "success" });
     //   console.log(data);
     // }
-
-    setIsLoading(false);
   }
   async function createAccount(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -64,14 +66,14 @@ export default function CheckOutForm() {
   const inputStyle = "w-full ml-7 h-full p-6  focus:outline-0";
   const inputIcon = "text-gray-400 absolute left-3";
   return (
-    <div className="rounded-2xl border w-125 h-155 text-center border-gray-200 shadow p-6">
+    <div className="rounded-2xl border sm:w-125 sm:p-0 sm:h-155 text-center border-gray-200 shadow p-6">
       <h3 className="text-2xl font-bold ">
         Fill the field to continue with your checkout
       </h3>
       <p className="text-gray-500">It takes less than 2 Minutes</p>
       <form
         action="post"
-        className="flex flex-col "
+        className="flex px-4 flex-col "
         onSubmit={cartStore ? placeOrder : createAccount}
       >
         <div className={inputStyleParent}>

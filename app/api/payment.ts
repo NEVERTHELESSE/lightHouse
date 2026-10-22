@@ -13,7 +13,6 @@ export function loader({ request }: LoaderFunctionArgs) {
 
 export async function action({ request }: ActionFunctionArgs) {
   const body = await request.json();
-  console.log(body);
   try {
     if (!body.id) {
       return Response.json({
@@ -52,7 +51,6 @@ export async function action({ request }: ActionFunctionArgs) {
       },
     }
   );
-  console.log(res.data.data.authorization_url);
   if (res.data.status) {
     return Response.json({
       message: "sent",

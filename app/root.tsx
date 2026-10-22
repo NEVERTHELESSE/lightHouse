@@ -6,15 +6,13 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { Route } from "./+types/root";
 import "./css/style.css";
 import "./css/index.css";
-import { Link } from "react-router";
-
-import { FaArrowDown } from "react-icons/fa";
 import { ToastContainer } from "react-toastify";
 
+const queryClient = new QueryClient();
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -25,10 +23,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <ToastContainer />
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        <QueryClientProvider client={queryClient}>
+          <ToastContainer />
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+        </QueryClientProvider>
       </body>
     </html>
   );

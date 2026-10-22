@@ -2,7 +2,7 @@ export type productType = {
   id: string;
   title: string;
   description: string;
-  src: string[];
+  src: string;
   price: number;
   ram: number;
   width: number;
@@ -21,7 +21,7 @@ export type topPicksType = {
   id: string;
   title: string;
   description: string;
-  src: string[];
+  src: string;
   price: number;
   ram: number;
   width: number;

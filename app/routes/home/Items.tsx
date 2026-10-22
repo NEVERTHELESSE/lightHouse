@@ -13,7 +13,7 @@ export default function Items(prop: productType) {
   function updateCart() {
     addProduct({
       id: prop.id,
-      src: prop.src[0],
+      src: prop.src,
       title: prop.title,
       price: prop.price,
       quantity: 1,
@@ -30,7 +30,7 @@ export default function Items(prop: productType) {
     >
       <Link prefetch="intent" to={`/product?s=${prop.id}`}>
         <img
-          src={prop.src[0]}
+          src={prop.src}
 
           className=" object-contain w-full h-70 shadow-lg "
         />
