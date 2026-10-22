@@ -25,7 +25,7 @@ export default function ShowCart() {
           className="h-full hidden sm:flex w-[70%] bg-[#38383888]"
           onClick={hideCart}
         ></div>
-        <div className="h-full bg-white duration-1000 flex flex-col justify-between  w-full sm:w-[30%]">
+        <div className="h-full  bg-white duration-1000 flex flex-col justify-between  w-full sm:w-[30%]">
           <div>
             <div className="flex items-center p-6 justify-between shadow">
               <div>
@@ -47,7 +47,7 @@ export default function ShowCart() {
               {products.length == 0 ? (
                 <ContinueShopping />
               ) : (
-                <div className="h-[70vh] overflow-y-scroll ">
+                <div className="h-[60vh] sm:h-[70vh] overflow-y-scroll ">
                   {products.map((list: showCartT) => (
                     <div key={list.id} className="shadow">
                       <div className="flex px-2 py-3   ">
