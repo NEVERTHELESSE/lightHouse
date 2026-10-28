@@ -1,51 +1,44 @@
-import { FaArrowRight, FaShoppingCart } from "react-icons/fa";
-import { useParams, useSearchParams } from "react-router";
+import { useLocation, useSearchParams } from "react-router";
 import { topPicks } from "~/data/topPick";
 import Items from "../home/Items";
-import { useEffect, useState } from "react";
-import type { productType, topPicksType } from "~/types/productType";
+import { Suspense, lazy, useEffect, useState } from "react";
+import type { productType } from "~/types/productType";
 import SingleProductLoading from "~/loading/SingleProductLoading";
 import ProductInfo from "./ProductInfo";
-
+import { useQuery } from "@tanstack/react-query";
+import { supabase } from "~/lib/subase";
+import ProductLoading from "~/loading/ProductLoading";
+const MoreProduct = lazy(() => import("./MoreProduct"));
+const Similar = lazy(() => import("./Similar"));
 export default function Product() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [loading, setLoading] = useState(true);
+  // const [item, setItem] = useState<productType>({});
+  const locate = useLocation().search.split("=")[1];
+  const [imageUrl, setImageUrl] = useState("");
 
-  const [imageUrl, setImageUrl] = useState("/img/laptop1.png");
-  const [item, setItem] = useState<productType>({});
-
-  useEffect(() => {
-    setLoading(true);
-    const params = searchParams.get("s");
-    const goods = topPicks.find((r) => r.id == params);
-    if (goods?.id) {
-      setImageUrl(goods.src[0]);
-      setItem(goods);
-    }
-    setLoading(false);
-  }, [searchParams]);
-
-  const lists = [
-    "laptop1.png",
-    "laptop2.png",
-    "laptop3.png",
-    "laptop4.png",
-    "laptop5.png",
-  ];
+  const { data, error, isPending } = useQuery({
+    queryKey: [locate],
+    queryFn: async () => {
+      const result = await supabase
+        .from("products")
+        .select("*")
+        .eq("id", locate);
+      return result.data && result.data[0];
+    },
+  });
   return (
     <div className="py-14 md:py-40 px-5 flex  flex-col justify-between w-screen items-center">
-      {loading ? (
+      {isPending ? (
         <SingleProductLoading />
       ) : (
         <div className="justify-around md:flex w-full">
           <div className="my-2 flex md:w-[50%] ">
             <img
-              src={imageUrl}
+              src={imageUrl != "" ? imageUrl : data.files[0]}
               alt=""
               className="w-[80%] h-[50vh] md:h-[60vh] border object-contain sm:object-contain"
             />
             <div className="flex ml-4 flex-col justify-between">
-              {item.src.map((list) => (
+              {data.files.map((list: string) => (
                 <img
                   onClick={() => setImageUrl(list)}
                   src={list}
@@ -55,14 +48,28 @@ export default function Product() {
               ))}
             </div>
           </div>
-          <ProductInfo {...item} />
+          <ProductInfo {...data} />
         </div>
       )}
-      <h3 className="text-3xl my-6 font-bold">More product from Dell</h3>
+      {/* <h3 className="text-3xl my-6 font-bold">Check this out {data.brand}</h3> */}
       <div className="flex justify-between flex-wrap">
-        {topPicks.map((product) => (
-          <Items {...product} />
-        ))}
+        <Suspense fallback={<ProductLoading />}>
+          <Similar />
+        </Suspense>
+      </div>
+      <h3 className="text-3xl my-6 font-bold">
+        {/* More product from {data.brand} */}
+      </h3>
+      <div className="flex justify-between flex-wrap">
+        <Suspense fallback={<ProductLoading />}>
+          <MoreProduct />
+        </Suspense>
+      </div>
+      <h3 className="text-3xl my-6 font-bold">You might also like</h3>
+      <div className="flex justify-between flex-wrap">
+        <Suspense fallback={<ProductLoading />}>
+          <MoreProduct />
+        </Suspense>
       </div>
     </div>
   );

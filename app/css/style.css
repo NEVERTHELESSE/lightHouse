@@ -13,11 +13,6 @@
   animation: move 60s 2s infinite;
 }
 
-input[type="checkbox"] {
-  width: 20px;
-  padding: 20px;
-}
-
 @keyframes move {
   from {
     transform: translateX(0);

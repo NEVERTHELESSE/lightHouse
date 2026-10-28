@@ -18,7 +18,7 @@ export default function NewProduct() {
     }
     return result;
   }
-  const products = shuffleArray(topPicks);
+  const products = [];
   return (
     <div className="my-2 p-2 md:my-10 md:6 md:p-12">
       <div className="flex justify-between  items-center">

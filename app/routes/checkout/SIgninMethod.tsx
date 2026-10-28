@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaGoogle } from "react-icons/fa";
 import { supabase } from "~/lib/subase";
 
 export default function SigninMethod() {
@@ -22,8 +23,12 @@ export default function SigninMethod() {
   }
 
   return (
-    <button className="bg-secondary p-3 my-3" onClick={signinGoogle}>
-      login with google
+    <button
+      className="flex w-full my-3 items-center rounded-2xl p-4 cursor-pointer bg-soft"
+      onClick={signinGoogle}
+    >
+      <FaGoogle />
+      <p className="ml-2">Login with Google Account</p>
     </button>
   );
 }

@@ -13,29 +13,39 @@ export default function Products() {
 
   const [page, setPage] = useState(1);
   const [isError, setIsError] = useState(false);
-
+  const [products, setProducts] = useState([]);
   const { data, isPending } = useQuery({
-    queryKey: [active, 1],
+    queryKey: [active, page],
     queryFn: async () => {
       const res = await api.get(
-        `gadgets?page=${page}&&category=${active}&&size=20`
+        // `gadgets?page=${page}&&category=${active}&&size=20`
+        `gadgets?page=${page}&&size=16`
       );
       if (
         res.data.message == "There was an error while processing data" ||
         res.data.message === "no data found"
       ) {
-        setIsError(true);
+        if (page == 1) {
+          setIsError(true);
+        }
       }
+      setProducts((prev: any[]) => prev.concat(res.data.message));
       return res.data.message;
     },
     placeholderData: keepPreviousData,
   });
-  console.log(data);
   const [select, setSelect] = useState("dell");
+
+  function loadMoreProduct() {
+    setPage((prev) => prev + 1);
+    console.log(page);
+  }
+
   return (
     <div className="py-30 px-10">
       <div className="flex">
-        <div className="rounded-2xl mr-5 box  overflow-hidden flex flex-col w-40">
+        <div className="w-50 h-full"></div>
+        <div className="rounded-2xl mr-5 box h-[85vh] fixed  overflow-hidden flex flex-col w-40">
           {productD.map((p, i) => (
             <button
               onClick={() => setSelect(p)}
@@ -56,11 +66,11 @@ export default function Products() {
             </>
           ) : (
             <>
-              {isPending ? (
+              {products.length == 0 ? (
                 <ProductLoading />
               ) : (
                 <div className="flex flex-wrap justify-between w-full">
-                  {data.map((product: productType) => (
+                  {products.map((product: productType) => (
                     <Items {...product} key={product.id} />
                   ))}
                 </div>
@@ -69,6 +79,7 @@ export default function Products() {
           )}
         </div>
       </div>
+      <button onClick={loadMoreProduct}>loadmore</button>
     </div>
   );
 }

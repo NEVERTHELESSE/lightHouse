@@ -1,0 +1,8 @@
+i=1
+for file in *.jpg *.JPG *.jpeg *.png; do
+    [ -f "$file" ] || continue
+    mv -- "$file" "image${i}.jpg"
+    ((i++))
+done
+
+https://console.cloud.google.com/auth/branding?utm_source=chatgpt.com&pli=1&project=auth-3f933

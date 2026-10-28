@@ -13,22 +13,19 @@ import { supabase } from "~/lib/subase";
 export default function CheckOutForm() {
   const api = import.meta.env.VITE_API;
   const [userInfo, setUserInfo] = useState(userInformation);
-  const cartStore = userCounterStore((state: any) => state.products[0]);
+  const cartStore = userCounterStore((state: any) => state.products);
   const [isLoading, setIsLoading] = useState(false);
   const products = userCounterStore((state: any) => state.products);
 
   async function placeOrder(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setIsLoading(true);
+    // setIsLoading(true);
     if (cartStore) {
       const totalAmount = calculateTotal(products);
-      const { id, title, src } = cartStore;
       await axios
         .post(`${api}payment`, {
-          id,
-          title,
-          price: totalAmount,
-          src: src,
+          products: cartStore,
+          totalAmount: totalAmount,
           userInfo,
         })
         .then((res) => {

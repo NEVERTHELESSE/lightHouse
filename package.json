@@ -9,6 +9,8 @@
     "typecheck": "react-router typegen && tsc"
   },
   "dependencies": {
+    "@imagekit/nodejs": "^7.13.0",
+    "@imagekit/react": "^5.0.3",
     "@react-router/node": "8.0.0",
     "@react-router/serve": "8.0.0",
     "@supabase/supabase-js": "^2.118.0",
@@ -25,6 +27,7 @@
     "react-toastify": "^11.1.0",
     "react-type-animation": "^3.2.0",
     "redis": "^6.3.0",
+    "resend": "^6.35.0",
     "zustand": "^5.0.15"
   },
   "devDependencies": {

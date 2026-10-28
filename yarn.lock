@@ -242,6 +242,25 @@
     "@babel/helper-string-parser" "^7.29.7"
     "@babel/helper-validator-identifier" "^7.29.7"
 
+"@imagekit/javascript@^5.5.0":
+  version "5.5.1"
+  resolved "https://registry.npmjs.org/@imagekit/javascript/-/javascript-5.5.1.tgz"
+  integrity sha512-eGEbZGKCqX/rC1iwceb1pLg5oHJhGkH68+i6JhFFSDktrdCMC/475a5R0Obtnk6IbIc4eV+1vynkK4WZFeLWEQ==
+
+"@imagekit/nodejs@^7.13.0":
+  version "7.13.0"
+  resolved "https://registry.npmjs.org/@imagekit/nodejs/-/nodejs-7.13.0.tgz"
+  integrity sha512-JIYtZv/sd7VpmJKtEecSBzcWGklvfHF+W6tvRijlr0/X3akyqwl088fhn7pviXdI9u2WXgQK8KR8QYaRqnOYfA==
+  dependencies:
+    standardwebhooks "^1.0.0"
+
+"@imagekit/react@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.npmjs.org/@imagekit/react/-/react-5.0.3.tgz"
+  integrity sha512-Hhct0SQZNstdjt5ich2dGsFOz1JyE6WX0VyhF7dTSljGeXD2PzVP8Ybc37nMgrWi2JhKCoikRz/6I/P7jEmEqQ==
+  dependencies:
+    "@imagekit/javascript" "^5.5.0"
+
 "@jridgewell/gen-mapping@^0.3.12", "@jridgewell/gen-mapping@^0.3.5":
   version "0.3.13"
   resolved "https://registry.npmjs.org/@jridgewell/gen-mapping/-/gen-mapping-0.3.13.tgz"
@@ -381,6 +400,11 @@
   version "1.0.1"
   resolved "https://registry.npmjs.org/@rolldown/pluginutils/-/pluginutils-1.0.1.tgz"
   integrity sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==
+
+"@stablelib/base64@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@stablelib/base64/-/base64-1.0.1.tgz"
+  integrity sha512-1bnPQqSxSuc3Ii6MhBysoWCg58j97aUjuCSZrGSmDxNqtytIi0k8utUenAwTZN4V5mXXYGsVUI9zeBqy+jBOSQ==
 
 "@supabase/auth-js@2.118.0":
   version "2.118.0"
@@ -876,6 +900,11 @@ exsolve@^1.0.8:
   resolved "https://registry.npmjs.org/exsolve/-/exsolve-1.1.0.tgz"
   integrity sha512-D+42+T12DdIlJM3uepa55qGiL3sYdLBOxIl2ifQCzCHz4c7eiolaHsi3BIqEr7JxBzxv2pYZQX9kw16ziMcEmw==
 
+fast-sha256@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.npmjs.org/fast-sha256/-/fast-sha256-1.3.0.tgz"
+  integrity sha512-n11RGP/lrWEFI/bWdygLxhI+pVeo1ZYIVwvvPkW7azl/rOy+F3HYRZ2K5zeE9mmkhQppyv9sQFx0JM9UabnpPQ==
+
 fdir@^6.5.0:
   version "6.5.0"
   resolved "https://registry.npmjs.org/fdir/-/fdir-6.5.0.tgz"
@@ -1261,6 +1290,11 @@ pkg-types@^2.3.1:
     exsolve "^1.0.8"
     pathe "^2.0.3"
 
+postal-mime@2.7.6:
+  version "2.7.6"
+  resolved "https://registry.npmjs.org/postal-mime/-/postal-mime-2.7.6.tgz"
+  integrity sha512-UUlyE2KlxmvwMGq060onF/VWU3zD6dVW31FwokQ5v26jWd35fbs2MoTFzh+jXnPwAyV2MULMKXcBInGOl5TO6Q==
+
 postcss@^8.5.17:
   version "8.5.20"
   resolved "https://registry.npmjs.org/postcss/-/postcss-8.5.20.tgz"
@@ -1320,7 +1354,7 @@ raw-body@^3.0.2:
     iconv-lite "~0.7.0"
     unpipe "~1.0.0"
 
-"react-dom@^18 || ^19", react-dom@^19.2.7, "react-dom@>= 15.0.0", react-dom@>=19.2.7:
+"react-dom@^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom@^18 || ^19", react-dom@^19.2.7, "react-dom@>= 15.0.0", react-dom@>=19.2.7:
   version "19.2.7"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-19.2.7.tgz"
   integrity sha512-t0BRVXvbiE/o20Hfw669rLbMCDWtYZLvmJigy2f0MxsXF+71pxhR3xOkspmsO8h3ZlNzyibAmtCa3l4lYKk6gQ==
@@ -1361,7 +1395,7 @@ react-type-animation@^3.2.0:
   resolved "https://registry.npmjs.org/react-type-animation/-/react-type-animation-3.2.0.tgz"
   integrity sha512-WXTe0i3rRNKjmggPvT5ntye1QBt0ATGbijeW6V3cQe2W0jaMABXXlPPEdtofnS9tM7wSRHchEvI9SUw+0kUohw==
 
-react@*, "react@^18 || ^19", react@^19.2.7, "react@>= 15.0.0", react@>=18.0.0, react@>=19.2.7:
+react@*, "react@^16.13.1 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^18 || ^19", react@^19.2.7, "react@>= 15.0.0", react@>=18.0.0, react@>=19.2.7:
   version "19.2.7"
   resolved "https://registry.npmjs.org/react/-/react-19.2.7.tgz"
   integrity sha512-HNe9WslTbXmFK8o8cmwgAeJFSBvt1bPdHCVKtaaV+WlAN36mpT4hcRpwbf3fY56ar2oIXzsBpOAiIRHAdY0OlQ==
@@ -1381,6 +1415,14 @@ redis@^6.3.0:
     "@redis/json" "6.3.0"
     "@redis/search" "6.3.0"
     "@redis/time-series" "6.3.0"
+
+resend@^6.35.0:
+  version "6.35.0"
+  resolved "https://registry.npmjs.org/resend/-/resend-6.35.0.tgz"
+  integrity sha512-sScNQHunU2Np7oICQ/44GXif8cQ0lp2WPEo9nDtTnM1koPvgJwH/SEee8mJwYRwyIfi+uj7IetKiYspfyYBYaA==
+  dependencies:
+    postal-mime "2.7.6"
+    standardwebhooks "1.1.1"
 
 rolldown@~1.1.5:
   version "1.1.5"
@@ -1536,6 +1578,14 @@ source-map@^0.6.0:
   version "0.6.1"
   resolved "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
+
+standardwebhooks@^1.0.0, standardwebhooks@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/standardwebhooks/-/standardwebhooks-1.1.1.tgz"
+  integrity sha512-bCbX9ZEyFkWPsRz7Bl3NuQUJohmwGSev/yhr7vhaGPlc4AfIrspIRa6cPTBuI1ItmrTDJ4d/S2hCsfe4+vQGnQ==
+  dependencies:
+    "@stablelib/base64" "^1.0.0"
+    fast-sha256 "^1.3.0"
 
 statuses@^2.0.1, statuses@^2.0.2, statuses@~2.0.2:
   version "2.0.2"

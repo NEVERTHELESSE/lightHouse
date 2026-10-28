@@ -14,29 +14,24 @@ export async function loader({ request }: LoaderFunctionArgs) {
     pageSize = 8;
   }
   if (category) {
-    const { data, error } = await supabase
-      .from("products")
-      .select("id,title, width, height, size,drive,rate, price,src")
-      .eq("category", category)
-      .range((page - 1) * pageSize, page * pageSize - 1);
-
-    if (error) {
-      return Response.json({
-        message: "There was an error while processing data",
-      });
-    }
-
+    const { data, error } = await supabase.from("products").select("*");
+    // .select("id,title, width, height,files, size,drive,rate, price,src");
+    // .eq("category", category);
+    //   .range((page - 1) * pageSize, page * pageSize - 1)
+    console.log(data);
     if (data?.length !== 0) {
       const products = data?.map((product) => ({
         id: product.id,
         price: product.price,
-        title: product.title,
+        name: product.name,
         width: product.width,
+        ram: product.ram,
+        drive: product.isSSD ? "SSD" : "HDD",
         height: product.height,
-        size: product.size,
-        drive: product.drive,
+        discount: product.discount,
+        size: product.storage,
         rate: product.rate,
-        src: product.src?.[0],
+        src: product.files?.[0],
       }));
       return Response.json({
         message: products,
@@ -47,42 +42,4 @@ export async function loader({ request }: LoaderFunctionArgs) {
       });
     }
   }
-
-  const { data, error } = await supabase
-    .from("products")
-    .select("id,title, width, height, size,drive,rate, price,src")
-    .range((page - 1) * pageSize, page * pageSize - 1);
-
-  if (error) {
-    return Response.json({
-      message: "There was an error while processing data",
-    });
-  }
-
-  if (data?.length !== 0) {
-    const products = data?.map((product) => ({
-      id: product.id,
-      price: product.price,
-      title: product.title,
-      width: product.width,
-      height: product.height,
-      size: product.size,
-      drive: product.drive,
-      rate: product.rate,
-      src: product.src?.[0],
-    }));
-    return Response.json({
-      message: products,
-    });
-  } else {
-    return Response.json({
-      message: "no data found",
-    });
-  }
 }
-
-// export function action({request}:ActionFunctionArgs){
-//   return Response.json({
-//     message: 'hello world'
-//   })
-// }

@@ -11,10 +11,11 @@ export default function TopPick() {
   const [active, setActive] = useState("laptop");
 
   const [isError, setIsError] = useState(false);
-  const { data, isPending } = useQuery({
+  const { data, isPending, error } = useQuery({
     queryKey: [active],
     queryFn: async () => {
       const res = await api.get(`gadgets?page=${1}&&category=${active}`);
+      console.log(res.data);
       if (
         res.data.message == "There was an error while processing data" ||
         res.data.message === "no data found"
@@ -35,7 +36,7 @@ export default function TopPick() {
         <h3 className="text-2xl font-bold uppercase">{active}</h3>
         <Selection active={active} setActive={setActive} />
       </div>
-      {isError ? (
+      {error ? (
         <>
           'There was an error whilte getting the data, kindly check your
           internet connection and refresh the page'
