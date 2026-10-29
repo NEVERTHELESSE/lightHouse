@@ -12,8 +12,20 @@ export const defaultProduct = {
   brand: "",
   year: "",
   touch: false,
+  category: "",
   finger: false,
   face: false,
   files: [],
-  src: [],
+};
+export const defaultProductMouse = {
+  name: "",
+  price: "",
+  discount: "",
+  wireless: true,
+  waranty: "",
+  rate: "",
+  brand: "",
+  year: "",
+  category: "",
+  files: [],
 };

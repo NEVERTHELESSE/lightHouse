@@ -1,6 +1,7 @@
 import { FaPen, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Price from "~/components/Price";
+import type { productType } from "~/types/productType";
 
 export default function PendingUpload({
   pendingProduct,
@@ -14,7 +15,7 @@ export default function PendingUpload({
     );
     setPendingProduct(remain);
   }
-  function updatePendingProduct(product, index) {
+  function updatePendingProduct(product: any, index: number) {
     setProductInfo(product);
     setAddedImage(product.src);
     removeAndSet(index);
@@ -29,7 +30,7 @@ export default function PendingUpload({
   return (
     <div className="w-full">
       Double click to update product info
-      {pendingProduct.map((product, index: number) => (
+      {pendingProduct.map((product: productType, index: number) => (
         <div
           onDoubleClick={() => updatePendingProduct(product, index)}
           key={index}
@@ -37,7 +38,7 @@ export default function PendingUpload({
         >
           <div className="flex">
             <img
-              src={product.src[0]}
+              src={product.files[0]}
               alt="laptop"
               className="size-15 object-cover "
             />

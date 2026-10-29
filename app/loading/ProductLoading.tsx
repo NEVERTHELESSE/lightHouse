@@ -1,5 +1,5 @@
 export default function ProductLoading() {
-  const lists = Array.from({ length: 20 }, (_, i) => i + 1);
+  const lists = Array.from({ length: 8 }, (_, i) => i + 1);
   return (
     <div className="flex p-2 m-2 md:my-10 md:p-10  flex-wrap justify-between items-center">
       {lists.map((list) => (

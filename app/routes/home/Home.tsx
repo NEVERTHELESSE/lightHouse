@@ -10,6 +10,7 @@ const Explore = lazy(() => import("./Explore"));
 const NewProduct = lazy(() => import("./NewProduct"));
 const NewsUpdate = lazy(() => import("./NewsUpdate"));
 const SocialMedia = lazy(() => import("./SocialMedia"));
+const GetInTouch = lazy(() => import("../../components/GetInTouch"));
 export function meta() {
   //We sell reliable Uk used and new Laptops with smart gadgets.
 
@@ -45,6 +46,9 @@ export default function Home() {
       </Suspense>
       <Suspense fallback="loading">
         <SocialMedia />
+      </Suspense>
+      <Suspense fallback="loading">
+        <GetInTouch />
       </Suspense>
     </main>
   );

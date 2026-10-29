@@ -11,7 +11,7 @@ export default function AdminProducts() {
       <div className="flex justify-between">
         <AdminProductSelection active={active} setActive={setActive} />
       </div>
-      <div className="flex my-2 items-center">
+      {/* <div className="flex my-2 items-center">
         <select
           className="py-3 mr-3 px-8 border  rounded-2xl"
           name="type"
@@ -27,8 +27,8 @@ export default function AdminProducts() {
         <p className="ml-3 text-red-600 font-bold">
           Note: Field that contain (*) are require
         </p>
-      </div>
-      <AdminAddProducts />
+      </div> */}
+      <AdminAddProducts active={active} />
     </div>
   );
 }

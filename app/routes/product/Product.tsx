@@ -22,6 +22,7 @@ export default function Product() {
         .from("products")
         .select("*")
         .eq("id", locate);
+      result.data && setImageUrl(result.data[0].files[0]);
       return result.data && result.data[0];
     },
   });
@@ -33,7 +34,7 @@ export default function Product() {
         <div className="justify-around md:flex w-full">
           <div className="my-2 flex md:w-[50%] ">
             <img
-              src={imageUrl != "" ? imageUrl : data.files[0]}
+              src={imageUrl}
               alt=""
               className="w-[80%] h-[50vh] md:h-[60vh] border object-contain sm:object-contain"
             />

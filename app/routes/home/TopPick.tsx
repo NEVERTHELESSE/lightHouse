@@ -48,9 +48,18 @@ export default function TopPick() {
             <ProductLoading />
           ) : (
             <div className="flex flex-wrap justify-between w-full">
-              {data.map((product: productType) => (
-                <Items {...product} key={product.id} />
-              ))}
+              {data.length !== 0 ? (
+                <>
+                  {data.map((product: productType) => (
+                    <Items {...product} key={product.id} />
+                  ))}
+                </>
+              ) : (
+                <div className="w-full">
+                  <p>no data found</p>
+                  <ProductLoading />
+                </div>
+              )}
             </div>
           )}
         </>

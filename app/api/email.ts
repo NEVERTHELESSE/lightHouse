@@ -40,6 +40,7 @@ export async function successOrder(order: productType) {
       />
       Hello from Light House ICT
     </h1>
+
   </div>
   <h4>
     We just receiver your order, and your order is being procees, we will inform

@@ -14,7 +14,10 @@ export async function loader({ request }: LoaderFunctionArgs) {
     pageSize = 8;
   }
   if (category) {
-    const { data, error } = await supabase.from("products").select("*");
+    const { data, error } = await supabase
+      .from("products")
+      .select("*")
+      .eq("category", category);
     // .select("id,title, width, height,files, size,drive,rate, price,src");
     // .eq("category", category);
     //   .range((page - 1) * pageSize, page * pageSize - 1)
@@ -38,7 +41,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       });
     } else {
       return Response.json({
-        message: "no data found",
+        message: [],
       });
     }
   }

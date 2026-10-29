@@ -1,6 +1,6 @@
 export type productType = {
-  file: string;
-
+  files: string[];
+  folder: string;
   id: string;
   name: string;
   discount: number;

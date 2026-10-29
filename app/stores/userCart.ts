@@ -3,6 +3,7 @@ import type { showCartT } from "~/types/productType";
 
 const userCounterStore = create((set) => ({
   products: [],
+  pendingUpload: [],
   // count: localStorage.getItem("carts")
   //   ? localStorage.getItem("carts")?.length
   //   : 0,
@@ -15,14 +16,16 @@ const userCounterStore = create((set) => ({
   addProduct: (payload: showCartT) =>
     set((state: any) => ({
       products: [...state.products, payload],
-      // more: localStorage.setItem("carts", `${[...state.products, payload]}`),
+
       more: localStorage.setItem(
         "carts",
         JSON.stringify([...state.products, payload])
       ),
     })),
-  // localStorage.setItem('carts',`${[...state.products]}`)
-  // ),
+  addPendingUpload: (payload: showCartT) =>
+    set((state: any) => ({
+      pendingUpload: [...state.pendingUpload, payload],
+    })),
   showCart: () => set({ cart: true }),
   hideCart: () => set({ cart: false }),
   decrement: () => set((state: any) => ({ count: state.count - 1 })),

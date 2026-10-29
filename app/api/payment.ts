@@ -4,7 +4,6 @@ import axios from "axios";
 
 import crypto from "crypto";
 import { calculateTotal } from "~/functions/calculateTotal";
-import sendEmail from "./email";
 import { supabase } from "~/lib/subase";
 config();
 export function loader({ request }: LoaderFunctionArgs) {
@@ -25,7 +24,7 @@ export async function action({ request }: ActionFunctionArgs) {
     } else {
       const orderInfo = body.products;
       const userInfo = body.userInfo;
-      const totalAmount = body.totalAmount;
+      const totalAmount = body.totalAmount * 100;
       const confirmAmount = calculateTotal(orderInfo);
       if (confirmAmount !== totalAmount) {
         return Response.json({
