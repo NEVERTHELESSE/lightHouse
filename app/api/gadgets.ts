@@ -14,14 +14,15 @@ export async function loader({ request }: LoaderFunctionArgs) {
     pageSize = 8;
   }
   if (category) {
+    const start = performance.now();
     const { data, error } = await supabase
       .from("products")
       .select("*")
       .eq("category", category);
+    console.log(`query time ${(performance.now() - start).toFixed(0)}ms`);
     // .select("id,title, width, height,files, size,drive,rate, price,src");
     // .eq("category", category);
     //   .range((page - 1) * pageSize, page * pageSize - 1)
-    console.log(data);
     if (data?.length !== 0) {
       const products = data?.map((product) => ({
         id: product.id,

@@ -45,7 +45,7 @@ export default function AdminLeftBar({ active, setActive }: any) {
           </Link>
         ))}
       </nav>
-      <div className="w-80 h-full "></div>
+      <div className="w-83 h-full "></div>
     </div>
   );
 }

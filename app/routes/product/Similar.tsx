@@ -15,7 +15,6 @@ export default function Similar() {
     queryKey: [active],
     queryFn: async () => {
       const res = await api.get(`gadgets?page=${1}&&category=${active}`);
-      console.log(res.data);
       if (
         res.data.message == "There was an error while processing data" ||
         res.data.message === "no data found"
@@ -27,15 +26,8 @@ export default function Similar() {
     placeholderData: keepPreviousData,
   });
   return (
-    <div className="p-2 m-2 md:my-10 md:p-10">
-      <div className="md:flex justify-between items-center">
-        <div>
-          <h4 className="text-secondary font-bold">SHOP BY CATEGORY</h4>
-          <span className="md:text-5xl my-15 font-bold ">Top Pick</span>
-        </div>
-        <h3 className="text-2xl font-bold uppercase">{active}</h3>
-        <Selection active={active} setActive={setActive} />
-      </div>
+    <div className="p-2 m-2 w-[90%] md:my-10 md:p-10">
+      <h3 className="text-2xl font-bold uppercase">{active}</h3>
       {isError ? (
         <>
           'There was an error whilte getting the data, kindly check your

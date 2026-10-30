@@ -4,6 +4,7 @@ export type productType = {
   id: string;
   name: string;
   discount: number;
+  created_at: string;
   description: string;
   src: string;
   price: number;

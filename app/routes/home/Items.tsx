@@ -63,12 +63,13 @@ export default function Items(prop: productType) {
         </div>
 
         <div className="flex w-full justify-between">
-          <button
+          <Link
+            to={`/order?g=${prop.id}`}
             title="order macbook naw"
             className="bg-primary hover:bg-tertiary duration-200  w-[50%] sm:w-[60%] py-2  sm:py-3 flex items-center pl-3 text-white font-bold rounded-2xl"
           >
             Order Now <FaShoppingCart />
-          </button>
+          </Link>
           <button
             title={`Add ${prop.name} to your cart`}
             className="bg-secondary flex items-center justify-center w-[40%] sm:w-[35%] py-2 sm:py-3 text-white hover:bg-tertiary font-bold rounded-2xl "

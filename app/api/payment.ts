@@ -24,7 +24,7 @@ export async function action({ request }: ActionFunctionArgs) {
     } else {
       const orderInfo = body.products;
       const userInfo = body.userInfo;
-      const totalAmount = body.totalAmount * 100;
+      const totalAmount = body.totalAmount;
       const confirmAmount = calculateTotal(orderInfo);
       if (confirmAmount !== totalAmount) {
         return Response.json({
@@ -46,7 +46,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
       const paystackData = {
         email: userInfo.email,
-        amount: totalAmount,
+        amount: totalAmount * 100,
         currency: "NGN",
         callback_url: `http://localhost:5173/checkoutsuccess?ord=${orderId}`,
         metaData: {

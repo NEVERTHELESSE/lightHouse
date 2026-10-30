@@ -1,6 +1,14 @@
-import { options } from "~/data/data";
+type propT = {
+  active: string;
+  setActive: any;
+  options: string[];
+};
 
-export default function AdminProductSelection({ active, setActive }: any) {
+export default function AdminProductSelection({
+  active,
+  setActive,
+  options,
+}: propT) {
   return (
     <>
       <div className="flex">
@@ -14,7 +22,6 @@ export default function AdminProductSelection({ active, setActive }: any) {
           </button>
         ))}
       </div>
-      <input type="color" />
     </>
   );
 }

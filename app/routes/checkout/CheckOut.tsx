@@ -1,13 +1,11 @@
-import { FaEnvelope } from "react-icons/fa";
 import CartItems from "./CartItems";
-import CheckOutProgress from "./CheckOutProgress";
 import CheckOutForm from "./CheckOutForm";
 import userCounterStore from "~/stores/userCart";
 
 export default function Checkout() {
   const cartStore = userCounterStore((state: any) => state.products[0]);
   return (
-    <main className="py-24 px-10 mt-5 flex flex-col justify-center items-center sm:h-screen px-10  ">
+    <main className="py-24 mt-5 flex flex-col justify-center items-center sm:h-screen px-10  ">
       <div className="sm:flex items-center justify-center">
         <CheckOutForm />
         {cartStore ? (
@@ -21,9 +19,6 @@ export default function Checkout() {
           </div>
         )}
       </div>
-      {/* <button className="bg-primary font-bold mt-6 w-max text-white px-8 py-4 rounded-2xl flex ">
-        Check Out
-      </button> */}
     </main>
   );
 }

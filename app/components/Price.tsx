@@ -3,5 +3,5 @@ type priceT = {
 };
 
 export default function Price({ productPrice }: priceT) {
-  return <p>₦ {productPrice.toLocaleString()}</p>;
+  return <strong>₦ {productPrice.toLocaleString()}</strong>;
 }

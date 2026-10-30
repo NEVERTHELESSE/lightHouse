@@ -1,8 +1,5 @@
 import { useLocation, useSearchParams } from "react-router";
-import { topPicks } from "~/data/topPick";
-import Items from "../home/Items";
-import { Suspense, lazy, useEffect, useState } from "react";
-import type { productType } from "~/types/productType";
+import { Suspense, lazy, useState } from "react";
 import SingleProductLoading from "~/loading/SingleProductLoading";
 import ProductInfo from "./ProductInfo";
 import { useQuery } from "@tanstack/react-query";
@@ -27,7 +24,7 @@ export default function Product() {
     },
   });
   return (
-    <div className="py-14 md:py-40 px-5 flex  flex-col justify-between w-screen items-center">
+    <div className="py-14 md:py-40 px-5 flex  flex-col justify-between w-full items-center">
       {isPending ? (
         <SingleProductLoading />
       ) : (
@@ -52,12 +49,9 @@ export default function Product() {
           <ProductInfo {...data} />
         </div>
       )}
-      {/* <h3 className="text-3xl my-6 font-bold">Check this out {data.brand}</h3> */}
-      <div className="flex justify-between flex-wrap">
-        <Suspense fallback={<ProductLoading />}>
-          <Similar />
-        </Suspense>
-      </div>
+      <Suspense fallback={<ProductLoading />}>
+        <Similar />
+      </Suspense>
       <h3 className="text-3xl my-6 font-bold">
         {/* More product from {data.brand} */}
       </h3>

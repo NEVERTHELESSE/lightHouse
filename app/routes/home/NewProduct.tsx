@@ -1,24 +1,29 @@
 import { useState } from "react";
 import { FaArrowRight, FaShoppingBag, FaStar } from "react-icons/fa";
 import { Link } from "react-router";
-import { options } from "~/data/data";
-import { topPicks } from "~/data/topPick";
 import ProductLoading from "~/loading/ProductLoading";
-import type { topPicksType } from "~/types/productType";
 import Items from "./Items";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { api } from "~/api/api";
+import type { productType } from "~/types/productType";
 
 export default function NewProduct() {
-  const lists = [1, 2, 3, 4, 5];
-
-  function shuffleArray(array: topPicksType) {
-    const result = [...array];
-    for (let i = result.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [result[i], result[j]] = [result[j], result[i]];
-    }
-    return result;
-  }
-  const products = [];
+  const [isError, setIsError] = useState(false);
+  const { data, isPending, error } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const res = await api.get(`newproduct`);
+      console.log(res.data);
+      if (
+        res.data.message == "There was an error while processing data" ||
+        res.data.message === "no data found"
+      ) {
+        setIsError(true);
+      }
+      return res.data.message;
+    },
+    placeholderData: keepPreviousData,
+  });
   return (
     <div className="my-2 p-2 md:my-10 md:6 md:p-12">
       <div className="flex justify-between  items-center">
@@ -31,11 +36,36 @@ export default function NewProduct() {
         </div>
       </div>
       {/* <ProductLoading /> */}
-      <div className="flex flex-wrap justify-between w-full">
-        {products.map((product) => (
-          <Items {...product} />
-        ))}
-      </div>
+
+      {error ? (
+        <>
+          'There was an error whilte getting the data, kindly check your
+          internet connection and refresh the page'
+          <ProductLoading />
+        </>
+      ) : (
+        <>
+          {isPending ? (
+            <ProductLoading />
+          ) : (
+            <div className="flex flex-wrap justify-between w-full">
+              {data.length !== 0 ? (
+                <>
+                  {data.map((product: productType) => (
+                    <Items {...product} key={product.id} />
+                  ))}
+                </>
+              ) : (
+                <div className="w-full">
+                  <p>no data found</p>
+                  <ProductLoading />
+                </div>
+              )}
+            </div>
+          )}
+        </>
+      )}
+
       <div className="flex items-center w-full justify-center my-8">
         <Link
           to="/products"

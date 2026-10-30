@@ -3,27 +3,20 @@ import { useState } from "react";
 import { FaPen, FaTrash } from "react-icons/fa";
 import { toast } from "react-toastify";
 import { api } from "~/api/api";
+import { date } from "~/functions/Day";
 import { supabase } from "~/lib/subase";
 import type { productType } from "~/types/productType";
+import AdminProductSelection from "../AdminProductSelection";
+import { options } from "~/data/data";
 
 export default function AdminAllProduct() {
-  const [active, setActive] = useState("");
-  const [isError, setIsError] = useState(false);
+  const [active, setActive] = useState("newest product");
   const [size, setSize] = useState(16);
   const [reFetch, setRefetch] = useState(1);
-  const { data, isPending } = useQuery({
+  const { data, isPending, error } = useQuery({
     queryKey: [active, size, reFetch],
     queryFn: async () => {
-      const res = await api.get(
-        `gadgets?category=laptop`
-        // `gadgets?page=${1}&&category=${active}&&size=${size}`
-      );
-      if (
-        res.data.message == "There was an error while processing data" ||
-        res.data.message === "no data found"
-      ) {
-        setIsError(true);
-      }
+      const res = await api.get(`newproduct`);
       return res.data.message;
     },
     placeholderData: keepPreviousData,
@@ -57,10 +50,15 @@ export default function AdminAllProduct() {
       "items is added to draft, it can be recover within 30days, you can also change the date in drafts"
     );
   }
-
+  const allOptions = ["newest product", ...options];
   return (
     <div className="pb-10">
-      {isError ? (
+      <AdminProductSelection
+        active={active}
+        setActive={setActive}
+        options={allOptions}
+      />
+      {error ? (
         "there was an error "
       ) : (
         <>
@@ -80,13 +78,11 @@ export default function AdminAllProduct() {
                       className="size-20 border-r  object-cover"
                     />
                     <div className="p-2">
-                      <p>
-                        {product.title} (core i7) (8bg ram) (13.7 X 21 inch)
-                      </p>
+                      <p>{product.name} (core i7) (8bg ram) (13.7 X 21 inch)</p>
                       <p>
                         Uploaded By:{" "}
-                        <span className="font-bold">neverthelesse </span>on
-                        <span>(25/02/2025 2:PM)</span>
+                        <span className="font-bold">neverthelesse </span>on{" "}
+                        <span>({date(product.created_at)})</span>
                       </p>
                     </div>
                   </div>

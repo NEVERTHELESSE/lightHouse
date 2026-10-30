@@ -15,7 +15,6 @@ export default function TopPick() {
     queryKey: [active],
     queryFn: async () => {
       const res = await api.get(`gadgets?page=${1}&&category=${active}`);
-      console.log(res.data);
       if (
         res.data.message == "There was an error while processing data" ||
         res.data.message === "no data found"

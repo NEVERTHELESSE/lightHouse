@@ -9,7 +9,7 @@ export async function loader({ request }: ActionFunctionArgs) {
     console.log(count);
     if (error) {
       return Response.json({
-        message: "There was an error while getting the data",
+        message: "error occur",
       });
     }
     return Response.json({

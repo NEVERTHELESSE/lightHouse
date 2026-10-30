@@ -42,18 +42,6 @@ export default function CheckOutForm() {
       toast("no cart store");
       setIsLoading(false);
     }
-    // const { data, error } = await supabase
-    //   .from("users")
-    //   .insert(userInfo)
-    //   .select("*");
-    // if (error) {
-    //   toast("hello", { type: "error" });
-    //   console.log(error);
-    // } else {
-
-    //   toast("user added", { type: "success" });
-    //   console.log(data);
-    // }
   }
   async function createAccount(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();

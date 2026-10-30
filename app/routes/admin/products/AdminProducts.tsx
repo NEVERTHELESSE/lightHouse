@@ -9,7 +9,11 @@ export default function AdminProducts() {
   return (
     <div className="p-4">
       <div className="flex justify-between">
-        <AdminProductSelection active={active} setActive={setActive} />
+        <AdminProductSelection
+          active={active}
+          setActive={setActive}
+          options={options}
+        />
       </div>
       {/* <div className="flex my-2 items-center">
         <select
