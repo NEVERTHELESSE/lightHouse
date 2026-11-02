@@ -5,4 +5,13 @@ for file in *.jpg *.JPG *.jpeg *.png; do
     ((i++))
 done
 
+const arr = [1, 2, 3, 1, 4];
+
+const uniqueArray = arr.filter((value, index) => {
+  return arr.indexOf(value) === index;
+});
+
+console.log(uniqueArray);
+// [1, 2, 3, 4]
+
 https://console.cloud.google.com/auth/branding?utm_source=chatgpt.com&pli=1&project=auth-3f933

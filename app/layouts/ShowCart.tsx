@@ -5,13 +5,25 @@ import type { showCartT } from "~/types/productType";
 import ContinueShopping from "./ContinueShopping";
 import { Link } from "react-router";
 import { calculateTotal } from "~/functions/calculateTotal";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "~/api/api";
 
 export default function ShowCart() {
   const hideCart = userCounterStore((state: any) => state.hideCart);
   const active = userCounterStore((state: any) => state.cart);
   const products = userCounterStore((state: any) => state.products);
-
+  const user = userCounterStore((state: any) => state.user);
   const totalAmount = calculateTotal(products);
+
+  const { data, error, isPending } = useQuery({
+    queryKey: ["allcarts"],
+    queryFn: async () => {
+      const result = await api.post("loadcart", { id: user.id });
+      console.log(result.data.message.carts);
+      return result.data.message.carts;
+    },
+  });
+
   return (
     <>
       <section
@@ -43,56 +55,121 @@ export default function ShowCart() {
                 <FaX />
               </button>
             </div>
-            <>
-              {products.length == 0 ? (
-                <ContinueShopping />
-              ) : (
-                <div className="h-[60vh] sm:h-[70vh] overflow-y-scroll ">
-                  {products.map((list: showCartT) => (
-                    <div key={list.id} className="shadow">
-                      <div className="flex px-2 py-3   ">
-                        <img
-                          src={list.src}
-                          className="size-30 object-cover"
-                          alt=""
-                        />
-                        <div className="flex justify-between w-full pr-6 items-center">
-                          <div className="ml-4 flex flex-col justify-around">
-                            <h3>{list.title}</h3>
-                            <h3 className="my-3">
-                              ₦ {list.price.toLocaleString()}
-                            </h3>
-                            <div className="flex items-center">
-                              <button className="border py-1 px-3  rounded-lg">
-                                -
-                              </button>
-                              <p className="mx-3">{list.quantity}</p>
-                              <button
-                                className="border py-1 px-3 hover:bg-secondary duration-200 bg-primary  rounded-lg
+            {!user.id ? (
+              <>
+                {products.length == 0 ? (
+                  <ContinueShopping />
+                ) : (
+                  <div className="h-[60vh] sm:h-[70vh] overflow-y-scroll ">
+                    {products.map((list: showCartT, index: number) => (
+                      <div key={index} className="shadow">
+                        <div className="flex px-2 py-3   ">
+                          <img
+                            src={list.src}
+                            className="size-30 object-cover"
+                            alt=""
+                          />
+                          <div className="flex justify-between w-full pr-6 items-center">
+                            <div className="ml-4  flex flex-col justify-around">
+                              <h3 className="one w-70 ">{list.name}</h3>
+                              <h3 className="my-3">
+                                ₦ {list.price.toLocaleString()}
+                              </h3>
+                              <div className="flex items-center">
+                                <button className="border py-1 px-3  rounded-lg">
+                                  -
+                                </button>
+                                <p className="mx-3">{list.quantity}</p>
+                                <button
+                                  className="border py-1 px-3 hover:bg-secondary duration-200 bg-primary  rounded-lg
                               "
-                                onClick={() =>
-                                  (list.quantity = list.quantity + 1)
-                                }
-                              >
-                                +
-                              </button>
+                                  onClick={() =>
+                                    (list.quantity = list.quantity + 1)
+                                  }
+                                >
+                                  +
+                                </button>
+                              </div>
                             </div>
-                          </div>
 
-                          <div className="flex justify-end flex-col items-end">
-                            <FaX />
-                            <p className="my-4">
-                              {" "}
-                              ₦ {list.price.toLocaleString()}
-                            </p>
+                            <div className="flex justify-end flex-col items-end">
+                              <FaX />
+                              <p className="my-4">
+                                {" "}
+                                ₦ {list.price.toLocaleString()}
+                              </p>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </>
+                    ))}
+                  </div>
+                )}
+              </>
+            ) : (
+              <>
+                {error ? (
+                  <ContinueShopping />
+                ) : (
+                  <>
+                    {isPending ? (
+                      "loading"
+                    ) : (
+                      <div className="h-[60vh] sm:h-[70vh] overflow-y-scroll ">
+                        {data.length == 0 ? (
+                          <ContinueShopping />
+                        ) : (
+                          <>
+                            {data.map((list: showCartT, index: number) => (
+                              <div key={index} className="shadow">
+                                <div className="flex px-2 py-3   ">
+                                  <img
+                                    src={list.src}
+                                    className="size-30 object-cover"
+                                    alt=""
+                                  />
+                                  <div className="flex justify-between w-full pr-6 items-center">
+                                    <div className="ml-4  flex flex-col justify-around">
+                                      <h3 className="one w-70 ">{list.name}</h3>
+                                      <h3 className="my-3">
+                                        {/* ₦ {list.price.toLocaleString()} */}
+                                      </h3>
+                                      <div className="flex items-center">
+                                        <button className="border py-1 px-3  rounded-lg">
+                                          -
+                                        </button>
+                                        <p className="mx-3">{list.quantity}</p>
+                                        <button
+                                          className="border py-1 px-3 hover:bg-secondary duration-200 bg-primary  rounded-lg
+                              "
+                                          onClick={() =>
+                                            (list.quantity = list.quantity + 1)
+                                          }
+                                        >
+                                          +
+                                        </button>
+                                      </div>
+                                    </div>
+
+                                    <div className="flex justify-end flex-col items-end">
+                                      <FaX />
+                                      <p className="my-4">
+                                        {" "}
+                                        ₦ {list.price.toLocaleString()}
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            ))}
+                          </>
+                        )}
+                      </div>
+                    )}
+                  </>
+                )}
+              </>
+            )}
           </div>
 
           {products.length !== 0 && (

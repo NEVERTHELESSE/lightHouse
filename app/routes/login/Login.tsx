@@ -10,6 +10,8 @@ import {
 import { Form, Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import SigninMethod from "../checkout/SIgninMethod";
+import { api } from "~/api/api";
+import meStore from "~/stores/meStore";
 
 export default function login() {
   const [email, setEmail] = useState("");
@@ -21,14 +23,19 @@ export default function login() {
   }
   // const url = process.env.VITE_APIURL;
   const navigate = useNavigate();
+  const updateUser = meStore((state: any) => state.updateUser);
+
   async function loginUser(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const url = import.meta.env.VITE_APIURL;
-
-    await axios
-      .post(`${url}login`, { email, password })
+    await api
+      .post("login", { email, password })
       .then((res) => {
-        if (res.data.message === "Succesfully login") {
+        if (res.data.message == "User successfully login") {
+          // changeuser({
+          //   email: res.data.email,
+          //   fullName: res.data.fullName,
+          //   profilePics: res.data.profilePics,
+          // });
           toast("User successfully login", { type: "success" });
           navigate("/");
         } else {

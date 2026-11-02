@@ -12,15 +12,11 @@ import { toast } from "react-toastify";
 import { Link, useNavigate, useNavigation } from "react-router";
 import axios from "axios";
 import SigninMethod from "../checkout/SIgninMethod";
+import { api } from "~/api/api";
+import { defaultUserInfo } from "./defaultUserInfo";
 
 export default function signup() {
-  const [userInfo, setUserInfo] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    hidePassword: true,
-  });
+  const [userInfo, setUserInfo] = useState(defaultUserInfo);
 
   function togglePasswordShow() {
     setUserInfo((prev) => ({ ...prev, hidePassword: !userInfo.hidePassword }));
@@ -33,12 +29,15 @@ export default function signup() {
       toast("Password not match");
     }
     const url = import.meta.env.VITE_APIURL;
-    await axios
-      .post(url + "newaccount", { userInfo })
+    await api
+      .post("newaccount", { userInfo })
       .then((res) => {
+        console.log(res.data);
         if (res.data.message == "User already exist") {
-          toast("User already exist", { type: "warning" });
-        } else if (res.data.message == "User successfully added") {
+          toast(`User already exist, Kindly login1 ${res.data.message}`, {
+            type: "warning",
+          });
+        } else if (res.data.message == "User successfully created") {
           toast("User successfully created", { type: "success", delay: 2 });
           navigate("/");
         } else {
@@ -52,6 +51,7 @@ export default function signup() {
           "There was an error while creating a user, kindly try again later"
         );
       });
+    setUserInfo(defaultUserInfo);
   }
 
   return (

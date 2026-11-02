@@ -19,6 +19,7 @@ export default function Product() {
         .from("products")
         .select("*")
         .eq("id", locate);
+      console.log(result.data);
       result.data && setImageUrl(result.data[0].files[0]);
       return result.data && result.data[0];
     },
@@ -28,30 +29,32 @@ export default function Product() {
       {isPending ? (
         <SingleProductLoading />
       ) : (
-        <div className="justify-around md:flex w-full">
-          <div className="my-2 flex md:w-[50%] ">
-            <img
-              src={imageUrl}
-              alt=""
-              className="w-[80%] h-[50vh] md:h-[60vh] border object-contain sm:object-contain"
-            />
-            <div className="flex ml-4 flex-col justify-between">
-              {data.files.map((list: string) => (
-                <img
-                  onClick={() => setImageUrl(list)}
-                  src={list}
-                  key={list}
-                  className={`min-w-15 h-15 cursor-pointer border object-cover ${list == imageUrl && "border-2  p-1"}`}
-                />
-              ))}
+        <>
+          <div className="justify-around md:flex w-full">
+            <div className="my-2 flex md:w-[50%] ">
+              <img
+                src={imageUrl}
+                alt=""
+                className="w-[80%] h-[50vh] md:h-[60vh] border object-contain sm:object-contain"
+              />
+              <div className="flex ml-4 flex-col justify-between">
+                {data.files.map((list: string) => (
+                  <img
+                    onClick={() => setImageUrl(list)}
+                    src={list}
+                    key={list}
+                    className={`min-w-15 h-15 cursor-pointer border object-cover ${list == imageUrl && "border-2  p-1"}`}
+                  />
+                ))}
+              </div>
             </div>
+            <ProductInfo {...data} />
           </div>
-          <ProductInfo {...data} />
-        </div>
+          <Suspense fallback={<ProductLoading />}>
+            <Similar active={data.category} id={data.id} />
+          </Suspense>
+        </>
       )}
-      <Suspense fallback={<ProductLoading />}>
-        <Similar />
-      </Suspense>
       <h3 className="text-3xl my-6 font-bold">
         {/* More product from {data.brand} */}
       </h3>

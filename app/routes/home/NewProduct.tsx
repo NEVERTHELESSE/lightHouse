@@ -8,18 +8,15 @@ import { api } from "~/api/api";
 import type { productType } from "~/types/productType";
 
 export default function NewProduct() {
-  const [isError, setIsError] = useState(false);
   const { data, isPending, error } = useQuery({
     queryKey: ["products"],
     queryFn: async () => {
       const res = await api.get(`newproduct`);
-      console.log(res.data);
-      if (
-        res.data.message == "There was an error while processing data" ||
-        res.data.message === "no data found"
-      ) {
-        setIsError(true);
-      }
+      // if (
+      //   res.data.message == "There was an error while processing data" ||
+      //   res.data.message === "no data found"
+      // ) {
+      // }
       return res.data.message;
     },
     placeholderData: keepPreviousData,

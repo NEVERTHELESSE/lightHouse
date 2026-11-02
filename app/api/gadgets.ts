@@ -17,7 +17,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
     const start = performance.now();
     const { data, error } = await supabase
       .from("products")
-      .select("*")
+      .select(
+        "id, price, name, width , ram,name, isSSD, height, discount, storage, rate, files"
+      )
       .eq("category", category);
     console.log(`query time ${(performance.now() - start).toFixed(0)}ms`);
     // .select("id,title, width, height,files, size,drive,rate, price,src");

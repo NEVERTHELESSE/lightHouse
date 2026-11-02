@@ -7,14 +7,18 @@ import type { productType } from "~/types/productType";
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from "react-router";
 import Items from "../home/Items";
-export default function Similar() {
-  const [active, setActive] = useState("laptop");
-
+type propT = {
+  active: string;
+  id: string;
+};
+export default function Similar({ active, id }: propT) {
   const [isError, setIsError] = useState(false);
   const { data, isPending } = useQuery({
     queryKey: [active],
     queryFn: async () => {
-      const res = await api.get(`gadgets?page=${1}&&category=${active}`);
+      const res = await api.get(
+        `gadgets?page=${1}&&category=${active}&&r=${id}`
+      );
       if (
         res.data.message == "There was an error while processing data" ||
         res.data.message === "no data found"
@@ -40,9 +44,11 @@ export default function Similar() {
             <ProductLoading />
           ) : (
             <div className="flex flex-wrap justify-between w-full">
-              {data.map((product: productType) => (
-                <Items {...product} key={product.id} />
-              ))}
+              {data
+                .filter((r: any) => r.id != id)
+                .map((product: productType) => (
+                  <Items {...product} key={product.id} />
+                ))}
             </div>
           )}
         </>

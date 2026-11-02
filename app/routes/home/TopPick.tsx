@@ -23,7 +23,7 @@ export default function TopPick() {
       }
       return res.data.message;
     },
-    placeholderData: keepPreviousData,
+    // placeholderData: keepPreviousData,
   });
   return (
     <div className="p-2 m-2 md:my-10 md:p-10">
@@ -49,8 +49,8 @@ export default function TopPick() {
             <div className="flex flex-wrap justify-between w-full">
               {data.length !== 0 ? (
                 <>
-                  {data.map((product: productType) => (
-                    <Items {...product} key={product.id} />
+                  {data.map((product: productType, index: number) => (
+                    <Items {...product} key={index} />
                   ))}
                 </>
               ) : (

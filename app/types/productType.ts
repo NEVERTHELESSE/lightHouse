@@ -44,7 +44,7 @@ export type topPicksType = {
 export type showCartT = {
   id: string;
   src: string;
-  title: string;
+  name: string;
   price: number;
   quantity: number;
 };

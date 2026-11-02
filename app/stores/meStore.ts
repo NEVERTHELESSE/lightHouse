@@ -7,6 +7,13 @@ const meStore = create((set) => ({
     phoneNumber: "9051602636",
     address: "oluyole, ibadan",
   },
+  changeUser: (payload: any) =>
+    set((state: any) => ({
+      user: {
+        ...state.user,
+        ...payload,
+      },
+    })),
 
   // addProduct: (payload: showCartT) =>
   //   set((state: any) => ({ products: [...state.products, payload] })),

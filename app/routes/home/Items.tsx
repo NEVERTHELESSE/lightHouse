@@ -4,21 +4,43 @@ import { Link } from "react-router";
 import userCounterStore from "~/stores/userCart";
 import type { productType, topPicksType } from "~/types/productType";
 import Price from "~/components/Price";
+import Rate from "~/components/Rate";
+import { Discount } from "~/components/Discount";
+import { api } from "~/api/api";
 
 export default function Items(prop: productType) {
-  const lists = [1, 2, 3, 4, 5];
   const increment = userCounterStore((state: any) => state.increment);
   const showCart = userCounterStore((state: any) => state.showCart);
   const addProduct = userCounterStore((state: any) => state.addProduct);
+  const addProducts = userCounterStore((state: any) => state.addProducts);
+  const products = userCounterStore((state: any) => state.products);
+  const user = userCounterStore((state: any) => state.user);
 
-  function updateCart() {
-    addProduct({
+  const removeDupliate = [
+    ...new Map(products.map((item: productType) => [item.id, item])).values(),
+  ];
+
+  async function updateCart() {
+    console.log(removeDupliate);
+    const quantity = 1;
+
+    const cartInfo = {
       id: prop.id,
       src: prop.src,
       name: prop.name,
       price: prop.price,
-      quantity: 1,
-    });
+      quantity,
+    };
+    console.log(user);
+    if (user.email) {
+      const result = await api
+        .post(`addToCart?id=${user.id}`, { ...cartInfo })
+        .then((res) => console.log(res.data));
+      addProduct(cartInfo);
+      console.log(result);
+    } else {
+      addProduct(cartInfo);
+    }
     increment();
     showCart();
   }
@@ -45,11 +67,7 @@ export default function Items(prop: productType) {
           {prop.width} X {prop.height} | {prop.ram}GB | {prop.size} |{" "}
           {prop.drive}
         </p>
-        <div className="flex w-max">
-          {lists.map((list) => (
-            <FaStar className="text-primary mr-1 " key={list} />
-          ))}
-        </div>
+        <Rate length={prop.ram} />
         <div className="flex my-2 items-center justify-between">
           <h4
             className="font-bold text-2xl "
@@ -57,9 +75,7 @@ export default function Items(prop: productType) {
           >
             <Price productPrice={prop.price} />
           </h4>
-          <s className="text-gray-500">
-            <i>{<Price productPrice={prop.discount} />}</i>
-          </s>
+          <Discount discount={prop.discount} />
         </div>
 
         <div className="flex w-full justify-between">
