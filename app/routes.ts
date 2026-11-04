@@ -25,6 +25,7 @@ export default [
     route("/api/allorder", "api/allOrder.ts"),
     route("/api/users", "api/user.ts"),
     route("/api/addToCart", "api/addToCart.ts"),
+    route("/api/removecart", "api/removeCart.ts"),
     route("/api/login", "api/login.ts"),
     route("/api/newaccount", "api/newaccount.ts"),
     route("/api/token", "api/token.ts"),

@@ -42,7 +42,7 @@ export type topPicksType = {
 }[];
 
 export type showCartT = {
-  id: string;
+  id: number;
   src: string;
   name: string;
   price: number;

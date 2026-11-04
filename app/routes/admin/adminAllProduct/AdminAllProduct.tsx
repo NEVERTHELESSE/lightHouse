@@ -78,7 +78,9 @@ export default function AdminAllProduct() {
                       className="size-20 border-r  object-cover"
                     />
                     <div className="p-2">
-                      <p>{product.name} (core i7) (8bg ram) (13.7 X 21 inch)</p>
+                      <p className="one">
+                        {product.name} (core i7) (8bg ram) (13.7 X 21 inch)
+                      </p>
                       <p>
                         Uploaded By:{" "}
                         <span className="font-bold">neverthelesse </span>on{" "}

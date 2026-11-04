@@ -28,7 +28,6 @@ export default function signup() {
     if (userInfo.password !== userInfo.confirmPassword) {
       toast("Password not match");
     }
-    const url = import.meta.env.VITE_APIURL;
     await api
       .post("newaccount", { userInfo })
       .then((res) => {
@@ -66,7 +65,7 @@ export default function signup() {
               type="text"
               minLength={3}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setUserInfo((prev) => ({ ...prev, username: e.target.value }))
+                setUserInfo((prev) => ({ ...prev, fullName: e.target.value }))
               }
 
               placeholder="Username"

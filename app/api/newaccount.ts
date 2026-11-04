@@ -10,7 +10,7 @@ export function loader({ request }: LoaderFunctionArgs) {
 
 export async function action({ request }: ActionFunctionArgs) {
   const body = await request.json();
-  const { email, username, password }: any = body.userInfo ?? {};
+  const { email, fullName, password }: any = body.userInfo ?? {};
   if (!email || !password) {
     return Response.json({ message: "no valid info" });
   }
@@ -20,9 +20,10 @@ export async function action({ request }: ActionFunctionArgs) {
   }
   const { data, error } = await supabase
     .from("users")
-    .insert({ email, fullName: username, password: hashPassword })
-    .select("id,email,fullName,username");
+    .insert({ email, fullName, password: hashPassword })
+    .select("id,email,fullName");
   if (error) {
+    console.log(error);
     if (error.code == "23505") {
       return Response.json({
         message: "User already exist",

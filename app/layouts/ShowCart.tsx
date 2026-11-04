@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaX } from "react-icons/fa6";
 import userCounterStore from "~/stores/userCart";
-import type { showCartT } from "~/types/productType";
+import type { productType, showCartT } from "~/types/productType";
 import ContinueShopping from "./ContinueShopping";
 import { Link } from "react-router";
 import { calculateTotal } from "~/functions/calculateTotal";
@@ -13,8 +13,6 @@ export default function ShowCart() {
   const active = userCounterStore((state: any) => state.cart);
   const products = userCounterStore((state: any) => state.products);
   const user = userCounterStore((state: any) => state.user);
-  const totalAmount = calculateTotal(products);
-
   const { data, error, isPending } = useQuery({
     queryKey: ["allcarts"],
     queryFn: async () => {
@@ -23,6 +21,14 @@ export default function ShowCart() {
       return result.data.message.carts;
     },
   });
+  // const totalAmount = calculateTotal(products);
+
+  async function removeProduct(id: number) {
+    const removed = data.filter((r: any) => r.id !== id);
+    const result = await api
+      .post(`addToCart?id=${user.id}`, { removed })
+      .then((res) => console.log(res.data));
+  }
 
   return (
     <>
@@ -116,7 +122,7 @@ export default function ShowCart() {
                       "loading"
                     ) : (
                       <div className="h-[60vh] sm:h-[70vh] overflow-y-scroll ">
-                        {data.length == 0 ? (
+                        {!data ? (
                           <ContinueShopping />
                         ) : (
                           <>
@@ -152,7 +158,12 @@ export default function ShowCart() {
                                     </div>
 
                                     <div className="flex justify-end flex-col items-end">
-                                      <FaX />
+                                      <button
+                                        className="bg-red-600 text-white rounded-full p-1 hover:bg-red-500"
+                                        onClick={() => removeProduct(list.id)}
+                                      >
+                                        <FaX />
+                                      </button>
                                       <p className="my-4">
                                         {" "}
                                         ₦ {list.price.toLocaleString()}
@@ -176,7 +187,7 @@ export default function ShowCart() {
             <div className="flex flex-col justify-between p-6 text-2xl">
               <div className="flex w-full my-2 justify-between">
                 <h4>Sub Total:</h4>
-                <h4 className="font-bold">₦ {totalAmount.toLocaleString()}</h4>
+                {/* <Price productPrice={totalAmount} /> */}
               </div>
               <Link
                 to="/checkout"

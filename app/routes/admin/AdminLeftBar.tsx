@@ -26,8 +26,8 @@ export default function AdminLeftBar({ active, setActive }: any) {
   ];
 
   return (
-    <div className="w-100 h-full">
-      <nav className="border bg-white fixed border-soft py-4 w-80 h-full rounded-r-4xl   shadow">
+    <div className="w-80 h-full">
+      <nav className="border bg-white fixed border-soft py-4 w-20 lg:w-75 h-full rounded-r-4xl   shadow">
         <div className="p-2 mb-6">
           <Logo />
         </div>
@@ -40,12 +40,12 @@ export default function AdminLeftBar({ active, setActive }: any) {
           >
             <div className="flex items-center" key={id}>
               {icon}
-              <span className="mx-2">{title}</span>
+              <span className="mx-2 hidden lg:flex">{title}</span>
             </div>
           </Link>
         ))}
       </nav>
-      <div className="w-83 h-full "></div>
+      <div className="w-22 lg:w-83 h-full "></div>
     </div>
   );
 }

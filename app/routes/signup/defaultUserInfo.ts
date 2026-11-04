@@ -1,5 +1,5 @@
 export const defaultUserInfo = {
-  username: "",
+  fullName: "",
   email: "",
   password: "",
   confirmPassword: "",
