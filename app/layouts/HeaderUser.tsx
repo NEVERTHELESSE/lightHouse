@@ -24,7 +24,7 @@ export default function HeaderUser() {
     queryKey: ["user"],
     queryFn: async () => {
       const result = await api.get("token");
-      changeuser(result.data.message);
+      result.data.message.id && changeuser(result.data.message);
       return await result.data.message;
     },
   });
@@ -64,7 +64,7 @@ export default function HeaderUser() {
             "loading "
           ) : (
             <>
-              {data ? (
+              {data.id ? (
                 <Link to="/account" className="flex ml-3 items-center">
                   <img
                     src={data.profilePics}

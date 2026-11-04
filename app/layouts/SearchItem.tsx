@@ -2,6 +2,8 @@ import Price from "~/components/Price";
 import Rate from "~/components/Rate";
 import { FaShoppingBag, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router";
+import { useQuery } from "@tanstack/react-query";
+
 import { Discount } from "~/components/Discount";
 import userCounterStore from "~/stores/userCart";
 
@@ -9,6 +11,7 @@ export default function SearchItem() {
   const increment = userCounterStore((state: any) => state.increment);
   const showCart = userCounterStore((state: any) => state.showCart);
   const addProduct = userCounterStore((state: any) => state.addProduct);
+  const user = userCounterStore((state: any) => state.user);
 
   function updateCart() {
     addProduct({
@@ -21,6 +24,18 @@ export default function SearchItem() {
     increment();
     showCart();
   }
+
+  const { data, error, isPending } = useQuery({
+    queryKey: ["search"],
+    queryFn: async () => {
+      const result = await axios.get(
+        // `http://localhost:5173/api/search?id=${user.id}`
+        "http://localhost:5173/api/search?id=31"
+      );
+      console.log(result.data);
+      return result.data;
+    },
+  });
 
   return (
     <div className="flex w-[40%] border justify-between  border-soft shadow mx-5">

@@ -17,6 +17,7 @@ export default [
     route("/api/payment", "api/payment.ts"),
     route("/api/gadgets", "api/gadgets.ts"),
     route("/api/search", "api/search.ts"),
+    route("/api/savesearch", "api/saveSearch.ts"),
     route("/api/newproduct", "api/newproduct.ts"),
     route("/api/drafts", "api/drafts.ts"),
     route("/api/imagekit", "api/upload-auth.ts"),

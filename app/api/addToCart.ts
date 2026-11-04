@@ -1,4 +1,5 @@
 import type { ActionFunctionArgs } from "react-router";
+
 import { supabase } from "~/lib/subase";
 
 export async function action({ request }: ActionFunctionArgs) {
@@ -9,22 +10,11 @@ export async function action({ request }: ActionFunctionArgs) {
     console.log("no valid data");
     return Response.json({ message: "userinfo not found!" });
   }
-  const previous = await supabase
-    .from("users")
-    .select("carts")
-    .eq("id", id)
-    .single();
-  if (previous.error) {
-    console.log(previous.error);
-    return Response.json({ message: "unable" });
-  }
-  console.log(previous.data.carts);
-  const all = [...previous.data.carts, body];
 
-  const { data, error } = await supabase
-    .from("users")
-    .update({ carts: all })
-    .eq("id", id);
+  const { data, error } = await supabase.rpc("append_to_carts", {
+    row_id: id,
+    new_value: body,
+  });
   // const { data, error } = await supabase.rpc("add_to_back_cart", {
   //   p_user_id: 13,
   //   p_product: body,

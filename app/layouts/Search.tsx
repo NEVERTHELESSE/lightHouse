@@ -1,14 +1,34 @@
-import { useState, type FormEvent, type ChangeEvent, useEffect } from "react";
+import {
+  useState,
+  lazy,
+  Suspense,
+  type FormEvent,
+  type ChangeEvent,
+  useEffect,
+} from "react";
 import { FiSearch } from "react-icons/fi";
-import SearchItem from "./SearchItem";
 import { useQuery } from "@tanstack/react-query";
+
+import axios from "axios";
+const SearchItem = lazy(() => import("./SearchItem"));
 import { supabase } from "~/lib/subase";
+import userCounterStore from "~/stores/userCart";
 
 export function Search() {
   const [suggestion, setSuggestion] = useState(false);
   const [input, setInput] = useState("");
+  const user = userCounterStore((state: any) => state.user);
+
   function findProduct(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (user.id) {
+      console.log(user.id, input);
+      const result = axios
+        .get(`http://localhost:5173/api/savesearch?id=${user.id}&&s=${input}`)
+        .then((res) => console.log(res.data));
+    } else {
+      console.log("search cant be save  ");
+    }
   }
   useEffect(() => {
     const timer = setTimeout(async () => {
@@ -56,7 +76,9 @@ export function Search() {
 
       {suggestion && (
         <div className="w-full bg-white border-y border-y-soft h-100 absolute left-0 my-2 shadow flex flex-wrap justify-center rounded-2xl items-center">
-          <SearchItem />
+          <Suspense fallBack="loading">
+            <SearchItem />
+          </Suspense>
         </div>
       )}
     </div>

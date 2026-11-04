@@ -10,6 +10,7 @@ import {
 import { Form, Link, useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import SigninMethod from "../checkout/SIgninMethod";
+import userCounterStore from "~/stores/userCart";
 import { api } from "~/api/api";
 import meStore from "~/stores/meStore";
 
@@ -17,6 +18,7 @@ export default function login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+  const changeuser = userCounterStore((state: any) => state.updateUser);
 
   function togglePasswordShow() {
     setHidePassword((prev) => !prev);
@@ -30,24 +32,27 @@ export default function login() {
     await api
       .post("login", { email, password })
       .then((res) => {
+        console.log(res.data);
         if (res.data.message == "User successfully login") {
-          // changeuser({
-          //   email: res.data.email,
-          //   fullName: res.data.fullName,
-          //   profilePics: res.data.profilePics,
-          // });
+          changeuser({
+            id: res.data.id,
+            email: res.data.email,
+            fullName: res.data.fullName,
+            profilePics: res.data.profilePics,
+          });
           toast("User successfully login", { type: "success" });
           navigate("/");
         } else {
           toast("invalid username or password", { type: "warning" });
         }
       })
-      .catch((error) =>
+      .catch((error) => {
+        console.log(error);
         toast(
           "There was an error while getting user info, kindly try again later",
           { type: "error" }
-        )
-      );
+        );
+      });
   }
 
   return (

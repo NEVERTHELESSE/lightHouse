@@ -30,7 +30,7 @@ export async function action({ request }: ActionFunctionArgs) {
       message: "invalid email or password",
     });
   }
-  const { email, password, fullName, profilePics } = userInfo.data[0];
+  const { email, password, fullName, profilePics, id } = userInfo.data[0];
   const cryptPassword = await bcrypt.compare(body.password, password);
   if (!cryptPassword) {
     return Response.json({
@@ -42,8 +42,15 @@ export async function action({ request }: ActionFunctionArgs) {
   if (!token) {
     return Response.json({ message: "token not found" });
   }
+  console.log(userInfo);
   return Response.json(
-    { message: "User successfully login" },
+    {
+      message: "User successfully login",
+      id,
+      email,
+      fullName,
+      profilePics,
+    },
     {
       status: 201,
       headers: {
