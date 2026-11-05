@@ -8,14 +8,14 @@ import {
 } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useQuery } from "@tanstack/react-query";
-
 import axios from "axios";
 const SearchItem = lazy(() => import("./SearchItem"));
+const PreviousSearch = lazy(() => import("./PreviousSearch"));
 import { supabase } from "~/lib/subase";
 import userCounterStore from "~/stores/userCart";
 
 export function Search() {
-  const [suggestion, setSuggestion] = useState(false);
+  const [suggestion, setSuggestion] = useState(true);
   const [input, setInput] = useState("");
   const user = userCounterStore((state: any) => state.user);
 
@@ -30,28 +30,28 @@ export function Search() {
       console.log("search cant be save  ");
     }
   }
-  useEffect(() => {
-    const timer = setTimeout(async () => {
-      try {
-        if (input.length > 3) {
-          setSuggestion(true);
-          useQuery({
-            queryKey: [input],
-            queryFn: async () => {
-              const result = supabase
-                .from("products")
-                .select("title, files, price, width, height")
-                .eq("title", input);
-              console.log(result);
-            },
-          });
-        }
-      } catch (error) {
-        console.error("search failed");
-      }
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [input]);
+  // useEffect(() => {
+  //   const timer = setTimeout(async () => {
+  //     try {
+  //       if (input.length > 3) {
+  //         setSuggestion(true);
+  //         useQuery({
+  //           queryKey: [input],
+  //           queryFn: async () => {
+  //             const result = supabase
+  //               .from("products")
+  //               .select("title, files, price, width, height")
+  //               .eq("title", input);
+  //             console.log(result);
+  //           },
+  //         });
+  //       }
+  //     } catch (error) {
+  //       console.error("search failed");
+  //     }
+  //   }, 500);
+  //   return () => clearTimeout(timer);
+  // }, [input]);
 
   return (
     <div className="lg:w-[40%]">
@@ -75,7 +75,10 @@ export function Search() {
       </form>
 
       {suggestion && (
-        <div className="w-full bg-white border-y border-y-soft h-100 absolute left-0 my-2 shadow flex flex-wrap justify-center rounded-2xl items-center">
+        <div className="w-full bg-white border-y border-y-soft h-100 absolute left-0 my-2 shadow p-10 justify-center rounded-2xl items-center">
+          <Suspense fallBack="loading">
+            <PreviousSearch />
+          </Suspense>
           <Suspense fallBack="loading">
             <SearchItem />
           </Suspense>
