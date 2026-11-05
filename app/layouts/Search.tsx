@@ -5,6 +5,7 @@ import {
   type FormEvent,
   type ChangeEvent,
   useEffect,
+  useRef,
 } from "react";
 import { FiSearch } from "react-icons/fi";
 import { useQuery } from "@tanstack/react-query";
@@ -13,11 +14,13 @@ const SearchItem = lazy(() => import("./SearchItem"));
 const PreviousSearch = lazy(() => import("./PreviousSearch"));
 import { supabase } from "~/lib/subase";
 import userCounterStore from "~/stores/userCart";
+import { api } from "~/api/api";
 
 export function Search() {
-  const [suggestion, setSuggestion] = useState(true);
+  const [suggestion, setSuggestion] = useState(false);
   const [input, setInput] = useState("");
   const user = userCounterStore((state: any) => state.user);
+  const searchTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function findProduct(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -30,6 +33,7 @@ export function Search() {
       console.log("search cant be save  ");
     }
   }
+  const [loading, setLoading] = useState(false);
   // useEffect(() => {
   //   const timer = setTimeout(async () => {
   //     try {
@@ -52,6 +56,27 @@ export function Search() {
   //   }, 500);
   //   return () => clearTimeout(timer);
   // }, [input]);
+  const [products, setProducts] = useState([]);
+  function searchItem(e: ChangeEvent<HTMLInputElement>) {
+    const value = e.target.value;
+    setSuggestion(true);
+    if (searchTimeout.current) {
+      clearTimeout(searchTimeout.current);
+    }
+    searchTimeout.current = setTimeout(async () => {
+      if (!value.trim()) return;
+
+      try {
+        const res = await api(`searchitem?s=${encodeURIComponent(value)}`);
+        if (res.data) {
+          setProducts(res.data.message);
+        }
+        console.log(res.data);
+      } catch (error) {
+        console.error("Search failed:", error);
+      }
+    }, 1000);
+  }
 
   return (
     <div className="lg:w-[40%]">
@@ -63,9 +88,7 @@ export function Search() {
         <FiSearch />
         <input
           type="text"
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setInput(e.target.value)
-          }
+          onChange={searchItem}
           placeholder="Search Gadget"
           className="w-full focus:outline-none ml-2"
         />
@@ -76,11 +99,11 @@ export function Search() {
 
       {suggestion && (
         <div className="w-full bg-white border-y border-y-soft h-100 absolute left-0 my-2 shadow p-10 justify-center rounded-2xl items-center">
-          <Suspense fallBack="loading">
+          <Suspense fallback="loading">
             <PreviousSearch />
           </Suspense>
-          <Suspense fallBack="loading">
-            <SearchItem />
+          <Suspense fallback="loading">
+            <SearchItem data={products} loading={loading} />
           </Suspense>
         </div>
       )}
