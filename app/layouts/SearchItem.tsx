@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Discount } from "~/components/Discount";
 import userCounterStore from "~/stores/userCart";
 import type { productType } from "~/types/productType";
+import CircularLoading from "~/loading/CircularLoading";
 
 interface propT {
   data: productType[];
@@ -34,12 +35,13 @@ export default function SearchItem({ data, loading }: propT) {
   return (
     <div className="flex   mx-5">
       {data.length == 0 ? (
-        "loading"
+        <CircularLoading />
       ) : (
         <>
           {data.map((pro) => (
-            <div
-              className="flex max-w-150 bg-red-500  border shadow border-soft"
+            <Link
+              to={`/product?s=${pro.id}`}
+              className="flex max-w-150 mx-2  border shadow border-soft"
               key={pro.id}
             >
               <img
@@ -62,24 +64,7 @@ export default function SearchItem({ data, loading }: propT) {
                 <span className="mx-5"></span>
                 <Discount discount={400000} />
               </div>
-              <div className="flex px-10 flex-col w-60 justify-around">
-                <Link
-                  to="wow"
-                  // to={`/order?g=${prop.id}`}
-                  title="order macbook naw"
-                  className="bg-primary hover:bg-tertiary duration-200  w-[50%] sm:w-full py-2  sm:py-3 flex items-center pl-3 text-white font-bold rounded-2xl"
-                >
-                  Order Now <FaShoppingCart />
-                </Link>
-                <button
-                  // title={`Add ${prop.name} to your cart`}
-                  className="bg-secondary flex items-center justify-center w-[40%] sm:w-full py-2 sm:py-3 text-white hover:bg-tertiary font-bold rounded-2xl "
-                  onClick={updateCart}
-                >
-                  Cart <FaShoppingBag className="ml-1" />
-                </button>
-              </div>
-            </div>
+            </Link>
           ))}
         </>
       )}

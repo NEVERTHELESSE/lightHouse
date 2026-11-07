@@ -51,7 +51,7 @@ export default function Items(prop: productType) {
       key={prop.id}
       className="rounded-2xl bg-white my-2 w-full md:w-[calc(100%/2.3)] lg:w-[calc(100%/4.2)] shadow-lg box  overflow-hidden"
     >
-      <Link prefetch="intent" to={`/product?s=${prop.id}`}>
+      <Link prefetch="intent" to={`/product?name=${prop.name}?s=${prop.id}`}>
         <img
           src={prop.src}
           alt="load"

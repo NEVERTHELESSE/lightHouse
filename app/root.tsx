@@ -1,5 +1,6 @@
 import {
   isRouteErrorResponse,
+  Link,
   Links,
   Meta,
   Outlet,
@@ -11,6 +12,7 @@ import type { Route } from "./+types/root";
 import "./css/style.css";
 import "./css/index.css";
 import { ToastContainer } from "react-toastify";
+import { FaArrowDown } from "react-icons/fa";
 
 const queryClient = new QueryClient();
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -54,18 +56,19 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
 
   return (
     <main className="pt-16 p-4 container">
-      {/* <div className="w-screen h-screen flex flex-col justify-center items-center">
-        <h3 className="text-5xl">404 Page Not found</h3>
+      <div className="w-screen h-screen flex flex-col justify-center items-center">
+        <img src="/404.png" alt="404 image" className="size-50" />
+        <h3 className="text-5xl my-4">404 Page Not found</h3>
         <h3 className="text-4xl font-bold flex  text-primary">
           YOU ARE LOOKING FOR AMAZING GADGET RIGHT?? CLICK HERE <FaArrowDown />
         </h3>
         <Link
-          className="bg-secondary px-12 py-4 rounded-2xl text-white font-bold"
+          className="bg-secondary my-10 px-12 py-4 rounded-2xl text-white font-bold"
           to="/products"
         >
           Browse All Gadget
         </Link>
-      </div> */}
+      </div>
       <h1>{message}</h1>
       <p>{details}</p>
       {stack && (

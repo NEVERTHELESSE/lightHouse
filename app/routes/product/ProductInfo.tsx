@@ -11,7 +11,6 @@ export default function ProductInfo({
   name,
   size,
   height,
-  src,
   id,
   files,
   price,
@@ -20,7 +19,6 @@ export default function ProductInfo({
   const increment = userCounterStore((state: any) => state.increment);
 
   function addCart() {
-    console.log(src, files);
     addProduct({
       id,
       src: files[0],
@@ -86,7 +84,7 @@ export default function ProductInfo({
         </Link>
         <Link
           target="_blank"
-          to={`https://wa.me/2347065945301?text=Hello%20I%20want%20to%20make%20an%20inquir%20about%20${name}%20is%20it%20negotiable%20${src}`}
+          to={`https://wa.me/2349051602536?text=Hello%20I%20want%20to%20make%20an%20inquir%20about%20${name}%20is%20it%20negotiable%20${files[0]}productid%${id}%http://localhost:5173/product?name=Rechargeable%20Wireless%20Bluetooth%20Mouse(2.4Ghz)?s=${id}`}
           rel="noopener noreferrer"
           className="lg:px-6 w-full sm:w-[50%] text-white  font-bold my-4 py-3 bg-secondary rounded-full flex items-center   justify-center text-[15px]"
         >

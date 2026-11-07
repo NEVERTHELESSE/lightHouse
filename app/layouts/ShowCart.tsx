@@ -7,21 +7,22 @@ import { Link } from "react-router";
 import { calculateTotal } from "~/functions/calculateTotal";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "~/api/api";
+import Price from "~/components/Price";
 
 export default function ShowCart() {
   const hideCart = userCounterStore((state: any) => state.hideCart);
   const active = userCounterStore((state: any) => state.cart);
   const products = userCounterStore((state: any) => state.products);
   const user = userCounterStore((state: any) => state.user);
+  const [totalAmount, setTotalAmount] = useState(0);
   const { data, error, isPending } = useQuery({
     queryKey: ["allcarts"],
     queryFn: async () => {
       const result = await api.post("loadcart", { id: user.id });
-      console.log(result.data.message.carts);
+      setTotalAmount(calculateTotal(result.data.message.carts));
       return result.data.message.carts;
     },
   });
-  // const totalAmount = calculateTotal(products);
 
   async function removeProduct(id: number) {
     const removed = data.filter((r: any) => r.id !== id);
@@ -182,12 +183,16 @@ export default function ShowCart() {
               </>
             )}
           </div>
-
-          {products.length !== 0 && (
+          {!isPending && data !== 0 && (
             <div className="flex flex-col justify-between p-6 text-2xl">
               <div className="flex w-full my-2 justify-between">
                 <h4>Sub Total:</h4>
-                {/* <Price productPrice={totalAmount} /> */}
+
+                {totalAmount == 0 ? (
+                  "calculating..."
+                ) : (
+                  <Price productPrice={totalAmount} />
+                )}
               </div>
               <Link
                 to="/checkout"
@@ -198,6 +203,7 @@ export default function ShowCart() {
               </Link>
             </div>
           )}
+          hello
         </div>
       </section>
     </>

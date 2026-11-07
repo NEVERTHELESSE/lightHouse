@@ -16,6 +16,10 @@
   --color-soft: #d1d5dc;
 }
 
+.contain {
+  @apply w-screen h-screen;
+}
+
 .cover {
   background: rgba(49, 139, 230, 0.411);
 }

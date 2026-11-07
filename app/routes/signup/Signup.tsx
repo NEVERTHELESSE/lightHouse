@@ -27,6 +27,7 @@ export default function signup() {
 
     if (userInfo.password !== userInfo.confirmPassword) {
       toast("Password not match");
+      return;
     }
     await api
       .post("newaccount", { userInfo })
@@ -47,7 +48,7 @@ export default function signup() {
       })
       .catch((error) => {
         toast(
-          "There was an error while creating a user, kindly try again later"
+          "There was an error while creating a user, kindly try again later",
         );
       });
     setUserInfo(defaultUserInfo);

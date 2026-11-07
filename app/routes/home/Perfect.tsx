@@ -24,7 +24,7 @@ export default function Perfect() {
                   <h3 className="font-bold text-2xl">{title} Laptop</h3>
                   <p className="text-gray-600">{description}</p>
                 </div>
-                <Link to={`/category/t=${title}`}>
+                <Link to={`/category?b=${title}`}>
                   <FaArrowRight className="border rounded-full p-2" size={35} />
                 </Link>
               </div>

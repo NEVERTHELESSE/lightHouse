@@ -18,7 +18,7 @@ export default function PreviousSearch() {
       ) : (
         <>
           {isPending ? (
-            "loading"
+            "loading previous search"
           ) : (
             <>
               {data.map((r: string, index: number) => (

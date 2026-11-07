@@ -23,7 +23,6 @@ export function Search() {
   const searchTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function findProduct(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
     if (user.id) {
       console.log(user.id, input);
       const result = axios
@@ -58,6 +57,7 @@ export function Search() {
   // }, [input]);
   const [products, setProducts] = useState([]);
   function searchItem(e: ChangeEvent<HTMLInputElement>) {
+    setInput(e.target.value);
     const value = e.target.value;
     setSuggestion(true);
     if (searchTimeout.current) {
@@ -81,7 +81,7 @@ export function Search() {
   return (
     <div className="lg:w-[40%]">
       <form
-        action="post"
+        action={`s?${input}`}
         onSubmit={findProduct}
         className="w-full  py-1 items-center bg-[#dadada5b] rounded-2xl sm:rounded-full pr-1 pl-3 flex"
       >
