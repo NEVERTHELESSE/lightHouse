@@ -4,17 +4,11 @@ import { Link } from "react-router";
 import { brands } from "~/data/brand";
 
 export default function Brand() {
-  // const [left, setLeft] = useState(0)
-  //   useEffect(()=>{
-  // const scrollLeft = setInterval(()=>{
-  // setLeft(100)
-  // },1000)
-  //   },[])
   const style = "text-3xl text-right text-gray-500 font-bold my-5";
   return (
     <div className="w-full">
       {/* <h3 className={style}>Browse by brands</h3> */}
-      <div className="p-10  flex shadow items-center w-full justify-between">
+      <div className="p-10  flex shadow items-center w-full justify-between scrollLeft">
         {brands.map((brand) => (
           <Link
             to={`/brands/${brand}`}

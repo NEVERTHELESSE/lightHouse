@@ -31,8 +31,20 @@ export default function Category() {
         .from("products")
         .select("*")
         .contains("bestFor", [locate]);
-      console.log(result.data);
-      return result.data;
+      const products = result.data?.map((product) => ({
+        id: product.id,
+        price: product.price,
+        name: product.name,
+        width: product.width,
+        ram: product.ram,
+        drive: product.isSSD ? "SSD" : "HDD",
+        height: product.height,
+        discount: product.discount,
+        size: product.storage,
+        rate: product.rate,
+        src: product.files?.[0],
+      }));
+      return products;
     },
   });
 

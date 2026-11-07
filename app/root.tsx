@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { Route } from "./+types/root";
 import "./css/style.css";
 import "./css/index.css";
+import "./css/anim.css";
 import { ToastContainer } from "react-toastify";
 import { FaArrowDown } from "react-icons/fa";
 

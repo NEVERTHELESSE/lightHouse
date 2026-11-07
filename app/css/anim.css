@@ -1,0 +1,65 @@
+.pageScroll {
+  width: 100%;
+  transform-origin: 0 50%;
+  animation: growProgress 2s linear;
+  animation-timeline: scroll();
+}
+
+@keyframes growProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.top {
+  animation: top 0.5s linear;
+}
+
+@keyframes top {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0%);
+  }
+}
+
+.left {
+  animation: left 0.5s ease-in;
+}
+
+@keyframes left {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+.right {
+  animation: right 0.5s ease-in;
+}
+
+@keyframes right {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+.scrollLeft {
+  animation: scrollLeft 60s ease-in;
+}
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}

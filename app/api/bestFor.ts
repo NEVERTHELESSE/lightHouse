@@ -4,27 +4,22 @@ import { supabase } from "~/lib/subase";
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   let page = Number(url.searchParams.get("page"));
-  const category = url.searchParams.get("category");
+  const b = url.searchParams.get("b");
   let pageSize = Number(url.searchParams.get("size"));
-  console.log(category, page);
   if (!page) {
     page = 1;
   }
   if (!pageSize) {
     pageSize = 8;
   }
-  if (category) {
-    const start = performance.now();
+  if (b) {
     const { data, error } = await supabase
       .from("products")
       .select(
         "id, price, name, width , ram,name, isSSD, height, discount, storage, rate, files",
       )
-      .eq("category", category);
-    console.log(`query time ${(performance.now() - start).toFixed(0)}ms`);
-    // .select("id,title, width, height,files, size,drive,rate, price,src");
-    // .eq("category", category);
-    //   .range((page - 1) * pageSize, page * pageSize - 1)
+      .contains("bestFor", [b]);
+
     if (data?.length !== 0) {
       const products = data?.map((product) => ({
         id: product.id,

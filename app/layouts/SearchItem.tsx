@@ -8,32 +8,27 @@ import { Discount } from "~/components/Discount";
 import userCounterStore from "~/stores/userCart";
 import type { productType } from "~/types/productType";
 import CircularLoading from "~/loading/CircularLoading";
+import Request from "~/components/Request";
 
 interface propT {
   data: productType[];
   loading: boolean;
+  noData: boolean;
 }
 
-export default function SearchItem({ data, loading }: propT) {
-  const increment = userCounterStore((state: any) => state.increment);
-  const showCart = userCounterStore((state: any) => state.showCart);
-  const addProduct = userCounterStore((state: any) => state.addProduct);
-  const user = userCounterStore((state: any) => state.user);
-
-  function updateCart() {
-    addProduct({
-      // id: prop.id,
-      // src: prop.src,
-      // name: prop.name,
-      // price: prop.price,
-      // quantity: 1,
-    });
-    increment();
-    showCart();
-  }
-
+export default function SearchItem({ data, loading, noData }: propT) {
   return (
     <div className="flex   mx-5">
+      {noData && (
+        <>
+          no product found, kindly request for a gadget here
+          <Link
+            to={`https://wa.me/2349051602536?text=Hello%20LightHouse%20I%20want%20make%20toan%20request%20for%20`}
+          >
+            request for the gadget
+          </Link>
+        </>
+      )}
       {data.length == 0 ? (
         <CircularLoading />
       ) : (

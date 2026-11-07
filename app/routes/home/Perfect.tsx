@@ -16,7 +16,10 @@ export default function Perfect() {
             className="rounded-2xl bg-white  my-4 mr-2 min-w-full sm:min-w-100 shadow-lg box  overflow-hidden"
           >
             <div className="w-full p-2  h-70 overflow-hidden bg-primary">
-              <img src={`/laptop/${src}`} />
+              <img
+                src={`/laptop/${src}`}
+                className="hover:scale-110 duration-700"
+              />
             </div>
             <div className="px-4 py-2 ">
               <div className="flex items-center justify-between">
@@ -24,8 +27,11 @@ export default function Perfect() {
                   <h3 className="font-bold text-2xl">{title} Laptop</h3>
                   <p className="text-gray-600">{description}</p>
                 </div>
-                <Link to={`/category?b=${title}`}>
-                  <FaArrowRight className="border rounded-full p-2" size={35} />
+                <Link
+                  to={`/category?b=${title}`}
+                  className="hover:bg-primary duration-500 border rounded-full "
+                >
+                  <FaArrowRight className="p-2" size={35} />
                 </Link>
               </div>
             </div>

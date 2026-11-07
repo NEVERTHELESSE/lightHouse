@@ -2,12 +2,13 @@ import { FaPhone, FaShoppingCart, FaStar } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 import { TypeAnimation } from "react-type-animation";
 import HeroInfo from "./HeroInfo";
+import { Link } from "react-router";
 
 export default function Hero() {
   return (
     <section className="w-full md:h-screen px-2 py-6 lg:pl-15 pt-20 md:pt-30 bg-[#e0f2fe] overflow-hidden flex-col flex ">
       <div className="md:flex h-160  mr-4 justify-between">
-        <div className=" md:w-[45%] lg:my-5 flex flex-col justify-around">
+        <div className=" md:w-[45%] lg:my-5 left flex flex-col justify-around">
           <div className="bg-green-300 text-secondary font-bold shadow  w-max p-2 rounded-lg flex items-center">
             <FaStar className="mr-2" />
             Both Brand New & UK Use
@@ -45,13 +46,16 @@ export default function Hero() {
             </span>
           </h4>
           <div className="flex my-4">
-            <button className="flex w-max text-white bg-primary font-bold p-2 lg:py-6  hover:bg-secondary duration-200 items-center lg:px-12 rounded-2xl">
+            <Link
+              to="/products"
+              className="flex w-max text-white bg-primary font-bold p-2 lg:py-6  hover:bg-secondary duration-200 items-center lg:px-12 rounded-2xl"
+            >
               <FaShoppingCart className=" m-1 lg:mr-3 " />
               Shop Now
               <span>
                 <FiArrowRight className=" m-1 lg" />
               </span>
-            </button>
+            </Link>
             <button className="flex ml-10 w-max border-secondary border-2 sm:font-bold p-2 hover:bg-secondary hover:text-white duration-200 lg:px-12 lg:py-6 items-center  rounded-2xl">
               Explore Deals
               <span>
@@ -62,7 +66,7 @@ export default function Hero() {
         </div>
         <img
           src="/computer.png"
-          className="w-full md:w-[50%] h-160 object-cover bg-green-500 rounded-3xl"
+          className="w-full md:w-[50%] h-160 object-cover bg-green-500 rounded-3xl right"
           alt=""
         />
       </div>

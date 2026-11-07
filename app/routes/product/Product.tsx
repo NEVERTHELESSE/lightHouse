@@ -42,9 +42,9 @@ export default function Product() {
 
   return (
     <div className="py-14 md:py-40 px-5 flex flex-col justify-between w-full items-center">
-      <div>
+      <>
         {error !== "" ? (
-          error
+          <SingleProductLoading />
         ) : (
           // <SingleProductLoading />
           <>
@@ -93,7 +93,7 @@ export default function Product() {
             <MoreProduct />
           </Suspense>
         </div>
-      </div>
+      </>
     </div>
   );
 }

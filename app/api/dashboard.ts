@@ -2,6 +2,7 @@ import type { ActionFunctionArgs } from "react-router";
 import { supabase } from "~/lib/subase";
 
 export async function loader({ request }: ActionFunctionArgs) {
+  //get_dashboard_count
   try {
     const { count, error } = await supabase
       .from("products")

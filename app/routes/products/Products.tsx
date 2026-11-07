@@ -1,85 +1,70 @@
-import { useState } from "react";
-import Selection from "~/components/Selection";
-import { productD } from "~/data/brand";
-import Items from "../home/Items";
-import { topPicks } from "~/data/topPick";
+import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router";
+import ProductLoading from "~/loading/ProductLoading";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { api } from "~/api/api";
 import type { productType } from "~/types/productType";
-import ProductLoading from "~/loading/ProductLoading";
+import Items from "../home/Items";
 
 export default function Products() {
-  const [active, setActive] = useState("laptop");
-
-  const [page, setPage] = useState(1);
-  const [isError, setIsError] = useState(false);
-  const [products, setProducts] = useState([]);
-  const { data, isPending } = useQuery({
-    queryKey: [active, page],
+  const { data, isPending, error } = useQuery({
+    queryKey: ["products"],
     queryFn: async () => {
-      const res = await api.get(
-        // `gadgets?page=${page}&&category=${active}&&size=20`
-        `gadgets?page=${page}&&size=16`
-      );
-      if (
-        res.data.message == "There was an error while processing data" ||
-        res.data.message === "no data found"
-      ) {
-        if (page == 1) {
-          setIsError(true);
-        }
-      }
-      setProducts((prev: any[]) => prev.concat(res.data.message));
+      const res = await api.get(`newproduct`);
       return res.data.message;
     },
     placeholderData: keepPreviousData,
   });
-  const [select, setSelect] = useState("dell");
-
-  function loadMoreProduct() {
-    setPage((prev) => prev + 1);
-    console.log(page);
-  }
-
   return (
-    <div className="py-30 px-10">
-      <div className="flex">
-        <div className="w-50 h-full"></div>
-        <div className="rounded-2xl mr-5 box h-[85vh] fixed  overflow-hidden flex flex-col w-40">
-          {productD.map((p, i) => (
-            <button
-              onClick={() => setSelect(p)}
-              key={p}
-              className={`uppercase ${select == p && "bg-primary text-white"} text-left ${i !== productD.length - 1 && " border-b"} p-4 `}
-            >
-              {p}
-            </button>
-          ))}
-        </div>
-        <div className="w-full">
-          <Selection active={active} setActive={setActive} />
-          {isError ? (
-            <>
-              'There was an error whilte getting the data, kindly check your
-              internet connection and refresh the page'
-              <ProductLoading />
-            </>
-          ) : (
-            <>
-              {products.length == 0 ? (
-                <ProductLoading />
-              ) : (
-                <div className="flex flex-wrap justify-between w-full">
-                  {products.map((product: productType) => (
-                    <Items {...product} key={product.id} />
-                  ))}
-                </div>
-              )}
-            </>
-          )}
+    <div className="my-2 p-2 md:my-10 md:6 md:p-12">
+      <div className="flex justify-between  items-center">
+        <div>
+          <h4 className="text-secondary text-[15px] font-bold">
+            If you cound'nt find the type of gadget you are looking for, kindly
+            make an request for it.
+          </h4>
         </div>
       </div>
-      <button onClick={loadMoreProduct}>loadmore</button>
+      {/* <ProductLoading /> */}
+
+      {error ? (
+        <>
+          'There was an error whilte getting the data, kindly check your
+          internet connection and refresh the page'
+          <ProductLoading />
+        </>
+      ) : (
+        <>
+          {isPending ? (
+            <ProductLoading />
+          ) : (
+            <div className="flex flex-wrap justify-between w-full">
+              {data.length !== 0 ? (
+                <>
+                  {data.map((product: productType) => (
+                    <Items {...product} key={product.id} />
+                  ))}
+                </>
+              ) : (
+                <div className="w-full">
+                  <p>no data found</p>
+                  <ProductLoading />
+                </div>
+              )}
+            </div>
+          )}
+        </>
+      )}
+
+      <div className="flex items-center w-full justify-center my-8">
+        <Link
+          to="/products"
+          className="bg-linear-150 text-white font-bold rounded-full from-secondary to-tertiary px-20 flex items-center py-4"
+        >
+          Load More Products
+          <FaArrowRight className="ml-4 animate-bounce" />
+        </Link>
+      </div>
     </div>
   );
 }

@@ -33,33 +33,16 @@ export function Search() {
     }
   }
   const [loading, setLoading] = useState(false);
-  // useEffect(() => {
-  //   const timer = setTimeout(async () => {
-  //     try {
-  //       if (input.length > 3) {
-  //         setSuggestion(true);
-  //         useQuery({
-  //           queryKey: [input],
-  //           queryFn: async () => {
-  //             const result = supabase
-  //               .from("products")
-  //               .select("title, files, price, width, height")
-  //               .eq("title", input);
-  //             console.log(result);
-  //           },
-  //         });
-  //       }
-  //     } catch (error) {
-  //       console.error("search failed");
-  //     }
-  //   }, 500);
-  //   return () => clearTimeout(timer);
-  // }, [input]);
   const [products, setProducts] = useState([]);
+  const [noData, setNoData] = useState(false);
   function searchItem(e: ChangeEvent<HTMLInputElement>) {
     setInput(e.target.value);
+    if (e.target.value != "") {
+      setSuggestion(true);
+    } else {
+      setSuggestion(false);
+    }
     const value = e.target.value;
-    setSuggestion(true);
     if (searchTimeout.current) {
       clearTimeout(searchTimeout.current);
     }
@@ -70,6 +53,9 @@ export function Search() {
         const res = await api(`searchitem?s=${encodeURIComponent(value)}`);
         if (res.data) {
           setProducts(res.data.message);
+          if (res.data.message.length == 0) {
+            setNoData(true);
+          }
         }
         console.log(res.data);
       } catch (error) {
@@ -103,7 +89,7 @@ export function Search() {
             <PreviousSearch />
           </Suspense>
           <Suspense fallback="loading">
-            <SearchItem data={products} loading={loading} />
+            <SearchItem data={products} loading={loading} noData={noData} />
           </Suspense>
         </div>
       )}

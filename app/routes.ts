@@ -18,6 +18,7 @@ export default [
     route("/checkoutsuccess", "routes/Checkoutsuccess.tsx"),
     route("/api/payment", "api/payment.ts"),
     route("/api/gadgets", "api/gadgets.ts"),
+    route("/api/revenue", "api/revenue.ts"),
     route("/api/bestfor", "api/bestFor.ts"),
     route("/api/search", "api/search.ts"),
     route("/api/savesearch", "api/saveSearch.ts"),
